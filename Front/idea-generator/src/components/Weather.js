@@ -5,8 +5,8 @@ const Weather = () => {
     const [weather, setWeather] = useState("Not yet gotten");
 
     const getWeather = () => {
-        axios.get('/Home').then(response => {
-            setWeather(response.data);
+        axios.get('/Owego').then(response => {
+            setWeather(`${response.data.temp} Kelvin`);
         })
     }
 

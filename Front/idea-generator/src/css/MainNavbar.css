@@ -18,6 +18,18 @@
     color: #fff;
 }
 
+.dropdown-menu show {
+    background-color: #001faa;
+}
+
+#navDropdown {
+    color: #fff;
+}
+
+#navDropdownLink {
+    text-align: center;
+}
+
 #navItems {
     justify-content: flex-end;
     padding-right: 5vw;

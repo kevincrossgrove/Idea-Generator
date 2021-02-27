@@ -1,27 +1,19 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import '../css/MainNavbar.css';
 
-const MainNavbar = ({buttonSetter, categorySetter}) => {
-    const updateButton = (title) => buttonSetter(title);
-    const updateCategory = (category) => categorySetter(category);
-
-    const onClickFunction = (buttonTitle, category) => {
-        updateButton(buttonTitle);
-        updateCategory(category);
-    }
-
+const MainNavbar = () => {
     return (
         <Navbar id="navbarContainer" expand="md">
         <Navbar.Brand id="navTitle">Idea Generator</Navbar.Brand>
         <Navbar.Toggle id="navToggle" />
         <Navbar.Collapse id="navItems">
-            {/* className="mr-auto" */}
             <Nav>
-                <Nav.Link id="navLink" onClick={() => onClickFunction('Ideas', 0)}>Ideas</Nav.Link>
-                <Nav.Link id="navLink" onClick={() => onClickFunction('Motivation', 1)}>Motivation</Nav.Link>
-                <Nav.Link id="navLink" onClick={() => onClickFunction('Pog', 2)}>Pog</Nav.Link>
-                <Nav.Link id="navLink" onClick={() => onClickFunction('Saved', 3)}>Saved</Nav.Link>
+                <Nav.Link as={Link} to='/' id="navLink" >Home</Nav.Link>
+                <Nav.Link as={Link} to='/submitideas' id="navLink" >Submit Ideas</Nav.Link>
+                <Nav.Link as={Link} to='/about' id="navLink" >About</Nav.Link>
+                <Nav.Link as={Link} to='/manageideas' id="navLink" >Manage</Nav.Link>
             </Nav>
         </Navbar.Collapse>
         </Navbar>

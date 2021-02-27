@@ -1,0 +1,4 @@
+                Money Ideas
+1. Run Ads on the outside of bootstrap columns
+2. Run a popup ad every 10 button presses
+3. Add accounts to save ideas, create own random button generators
