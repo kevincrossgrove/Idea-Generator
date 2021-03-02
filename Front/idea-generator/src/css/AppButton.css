@@ -11,3 +11,18 @@
     border: 2px solid black;
     margin: auto;
 }
+
+#generateButton:disabled {
+    opacity: 0.5;
+}
+
+#resetButton {
+    width: 150px;
+    height: 75px;
+    color: #fff;
+    background-color: red;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid black;
+    margin: auto;
+}

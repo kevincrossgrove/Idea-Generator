@@ -2,3 +2,14 @@
 1. Run Ads on the outside of bootstrap columns
 2. Run a popup ad every 10 button presses
 3. Add accounts to save ideas, create own random button generators
+
+                Functional Ideas
+1.   go through the list, keep track of where you are on the list.
+
+
+                Other Ideas
+1. Possible name could be helpful button or useful button
+
+                FIXES
+1. Reset button appears when you switch categories and click really fast after switching.
+2. Back button won't resize, and won't sit next to button

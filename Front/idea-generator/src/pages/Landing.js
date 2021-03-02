@@ -1,34 +1,47 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
-import GenerateButton from '../components/GenerateButton';
+
+import { GenerateButton, ResetButton, BackButton } from '../components/AppButton';
+import { loadCategory } from '../logic/DbLogic';  
 
 function Landing() {
-    const [result, setResult] = useState('Start');
-    const [buttonTitle, setButtonTitle] = useState('Discover Ideas');
-    const [wordCategory, setCategory] = useState(0);
+    const [reset, setReset] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [wordCategory, setCategory] = useState(() => sessionStorage.getItem('category') ?? 'Ideas');
+    const [ideas, setIdeas] = useState([]);
+    const [idea, setIdea] = useState('');
+    const [listData, setListData] = useState({
+        position: -1,
+        length: ideas.length ?? 0
+    });
 
-    // Clear result when the category is switched
+    // Load category, and clear result when the category is switched
+    // NOTE: Due to asynchronicity, Idea/Reset are removed before Category is loaded.
     useEffect(() => {
-        setResult('');
-    }, [buttonTitle]); 
+        setLoading(true);
+        setIdea('');
+        setReset(false);
+        loadCategory(wordCategory, setIdeas, setListData);
+        setLoading(false);
+        sessionStorage.setItem("category", wordCategory);
+    }, [wordCategory]); 
 
-    const categories = [
-        ['Go Poop', 'Eat Ass', 'Suck a chode', 'Jump off a bridge', 'Get drunk', 'Jump out of a plane'],
-        ['Dont be gay', 'Grow up', 'Seggs', 'Money'],
-        ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-        ['11', '22', '33', '44', '55', '66', '77', '88', '99']
-    ];
+    // Every time the position changes, the idea will change
+    useEffect(() => {
+        const currentIdea = (listData.position === -1 || listData.position >= listData.length) 
+        ? "" : ideas[listData.position].idea;
+        setIdea(currentIdea);
+        setReset(listData.position >= listData.length);
+    }, [listData.position]);
 
-    const setStates = (buttonText, category) => {
-        setButtonTitle(buttonText);
-        setCategory(category);
+    const generateIdea = () => {
+        if (listData.position < listData.length)
+            setListData({...listData, position: listData.position + 1});
     }
 
-    const randomText = () => {
-        console.log(wordCategory)
-        const i = Math.floor(Math.random() * Math.floor(categories[wordCategory].length));
-        setResult(`${buttonTitle} : ${categories[wordCategory][i]}`);
+    const updateCategory = (category) => {
+        setCategory(category)
     }
 
     return (
@@ -36,17 +49,21 @@ function Landing() {
         <Container>
             <Row>
                 <ButtonGroup aria-label="Basic example">
-                    <Button onClick = {() => setStates('Ideas', 0)}>Ideas</Button>
-                    <Button onClick = {() => setStates('Motivation', 1)}>Motivation</Button>
-                    <Button onClick = {() => setStates('Pog', 2)}>Pog</Button>
-                    <Button onClick = {() => setStates('Saved', 3)}>Saved</Button>
+                    <Button onClick = {() => updateCategory('Ideas')}>Ideas</Button>
+                    <Button onClick = {() => updateCategory('Motivation')}>Motivation</Button>
+                    <Button onClick = {() => updateCategory('Pog')}>Pog</Button>
+                    <Button onClick = {() => updateCategory('Saved')}>Saved</Button>
                 </ButtonGroup>
             </Row>
             <Row>
-                <GenerateButton title={buttonTitle} onClickFunction={() => randomText()}/>
+                <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}/>
+                {listData.position>0 && <BackButton listData={listData} setListData={setListData} /> }
             </Row>
             <Row>
-                <div id='result'>{result}</div>
+                <div id='result'>{idea}</div>
+            </Row>
+            <Row>
+                {reset && !loading && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}
             </Row>
         </Container>
         </>

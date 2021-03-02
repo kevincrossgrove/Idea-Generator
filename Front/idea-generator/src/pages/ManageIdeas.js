@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
 import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
-import axios from "axios";
 
 import '../css/ManageIdeas.css'
 import Ideas from '../components/Ideas';
+import { loadCategoryToManage } from '../logic/DbLogic';
 
 function ManageIdeas() {
     const [ideas, setIdeas] = useState([]);
+    const [category, setCategory] = useState('Ideas');
 
-    const loadCategory = (category) => {
-        axios.get(`/ideas/${category}`).then(response => {
-            response.data.map((object) => {
-                console.log(object.idea);
-            })
-            setIdeas(response.data);
-        });
+    const loadCategory = (newCategory) => {
+        setCategory(newCategory)
+        loadCategoryToManage(newCategory, setIdeas);
     }
 
     return (
@@ -31,7 +28,7 @@ function ManageIdeas() {
                 </ButtonGroup>
             </Row>
             <Row id='ideaListing'>
-                <Ideas ideas={ideas} />
+                <Ideas ideas={ideas} manage={true} setIdeas={setIdeas} category={category}/>
             </Row>
         </Container>
     )
