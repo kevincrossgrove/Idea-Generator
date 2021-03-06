@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-export const loadCategory = (category, setIdeas, setListData) => {
+export const loadCategory = (category, setIdeas, setListData, setLoading) => {
     setListData({ position: -1, length: 0});
 
     axios.get(`/ideas/${category}`).then(response => {
         randomShuffle(response.data);
         setIdeas(response.data);
         setListData({ position: -1, length: response.data.length});
+        setLoading(false);
     });
 }
 

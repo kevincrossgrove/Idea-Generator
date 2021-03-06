@@ -13,3 +13,8 @@
                 FIXES
 1. Reset button appears when you switch categories and click really fast after switching.
 2. Back button won't resize, and won't sit next to button
+
+                TODO
+1. Add authentication / accounts
+2. Add ability for logged in users to create their own buttons
+3. Deploy to Heroku for testing on mobile

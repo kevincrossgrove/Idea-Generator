@@ -1,6 +1,6 @@
 import React from 'react'
-import { useEffect, useState, useRef } from 'react';
-import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
 
 import { GenerateButton, ResetButton, BackButton } from '../components/AppButton';
 import { loadCategory } from '../logic/DbLogic';  
@@ -8,23 +8,22 @@ import { loadCategory } from '../logic/DbLogic';
 function Landing() {
     const [reset, setReset] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [wordCategory, setCategory] = useState(() => sessionStorage.getItem('category') ?? 'Ideas');
+    const [wordCategory, setCategory] = useState(() => localStorage.getItem('category') ?? 'Ideas');
     const [ideas, setIdeas] = useState([]);
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
         position: -1,
         length: ideas.length ?? 0
-    });
+    }); 
+    const [back, setBack] = useState(listData.position > 0);  
 
     // Load category, and clear result when the category is switched
     // NOTE: Due to asynchronicity, Idea/Reset are removed before Category is loaded.
     useEffect(() => {
-        setLoading(true);
         setIdea('');
         setReset(false);
-        loadCategory(wordCategory, setIdeas, setListData);
-        setLoading(false);
-        sessionStorage.setItem("category", wordCategory);
+        loadCategory(wordCategory, setIdeas, setListData, setLoading);
+        localStorage.setItem("category", wordCategory);
     }, [wordCategory]); 
 
     // Every time the position changes, the idea will change
@@ -41,7 +40,10 @@ function Landing() {
     }
 
     const updateCategory = (category) => {
-        setCategory(category)
+        if (category !== wordCategory) {
+            setCategory(category);
+            setLoading(true);
+        } 
     }
 
     return (
@@ -56,14 +58,18 @@ function Landing() {
                 </ButtonGroup>
             </Row>
             <Row>
-                <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}/>
-                {listData.position>0 && <BackButton listData={listData} setListData={setListData} /> }
+                <Col md={12} align="center">
+                    <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}
+                                    listData={listData} setListData={setListData}/>
+                    {listData.position > 0 && <BackButton listData={listData} setListData={setListData} back={back} setBack={setBack}/> }
+                </Col>
+                
             </Row>
             <Row>
                 <div id='result'>{idea}</div>
             </Row>
             <Row>
-                {reset && !loading && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}
+                {reset && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}
             </Row>
         </Container>
         </>

@@ -3,6 +3,8 @@ import { Button, ButtonGroup, Container, Form, Row } from 'react-bootstrap'
 import axios from "axios";
 import '../css/SubmitIdeas.css'
 
+const URL = 'http://localhost:5000';
+
 const SubmitIdeas = () => {
     const [category, setCategory] = useState("Ideas");
     const [text, setText] = useState('');
@@ -12,7 +14,7 @@ const SubmitIdeas = () => {
     }
 
     const submitData = () => {
-        axios.post('/ideas', {
+        axios.post(`/ideas`, {
             category: category,
             idea: text
           })

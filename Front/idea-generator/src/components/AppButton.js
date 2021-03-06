@@ -14,15 +14,17 @@ export const GenerateButton = ({title, onClickFunction, loading}) => {
 }
 
 // Go back to the previous idea within the category list.
-export const BackButton = ({listData, setListData}) => {
+export const BackButton = ({listData, setListData, back}) => {
     const goBack = () => {
         setListData({...listData, position: listData.position-1});
     }
 
     return (
-        <VscArrowLeft style={{ color: 'black', cursor: 'pointer'}}
-        size='2em'
-        onClick={() => goBack()}/>
+        <span id="backButton" disabled={!back}>
+            <VscArrowLeft style={{ color: 'black', cursor: 'pointer'}}
+            size='2em'
+            onClick={() => goBack()}/>
+        </span>
     );
 }
 

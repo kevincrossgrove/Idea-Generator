@@ -9,10 +9,13 @@
     font-family: 'Julius Sans One', sans-serif;
     text-shadow: 2px 2px 0px #000;
     border: 2px solid black;
-    margin: auto;
 }
 
 #generateButton:disabled {
+    opacity: 0.5;
+}
+
+#backButton:disabled {
     opacity: 0.5;
 }
 
