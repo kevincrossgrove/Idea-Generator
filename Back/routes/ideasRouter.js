@@ -81,6 +81,4 @@ async function getIdea(req, res, next) {
     next();
 }
 
-
-
 module.exports = router;

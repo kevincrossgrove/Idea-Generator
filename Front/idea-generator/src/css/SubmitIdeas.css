@@ -7,3 +7,16 @@
     color: #fff;
     text-align: center;
 }
+
+#submitButton {
+
+}
+
+#submitButton:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#errorMessage {
+    color: rgb(255, 25, 25);
+}

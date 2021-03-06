@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
 
 import '../css/ManageIdeas.css'
@@ -14,10 +14,17 @@ function ManageIdeas() {
         loadCategoryToManage(newCategory, setIdeas);
     }
 
+    useEffect(() => {
+        loadCategory('Ideas');
+    }, []);
+
     return (
         <Container>
-            <Row id='manageTitle'>
-                <h1>Manage Ideas</h1>
+            <Row>
+                <h1 id='manageTitle'>Manage Ideas</h1>
+            </Row>
+            <Row>
+                <h5 id='manageCategory'>Selected: {category}</h5>
             </Row>
             <Row>
                 <ButtonGroup aria-label="Basic example">
