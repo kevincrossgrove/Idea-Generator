@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 // Routers
 const ideasRouter = require('./routes/ideasRouter');
@@ -19,9 +20,11 @@ mongoose.connect(process.env.MDB_CONNECT, { useNewUrlParser: true }, (err) => {
 
 // Will use this on all endpoints, regardless of the path.
 app.use(express.json());
+app.use(cookieParser());
 // Set what domains can use this server, right now that is Localhost 3000.
 app.use(cors({
-  origin: ["http://localhost:3000"]
+  origin: ["http://localhost:3000"],
+  credentials: true
 }));
 
 app.use('/ideas', ideasRouter);

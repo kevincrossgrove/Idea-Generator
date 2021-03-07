@@ -1,26 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from "axios";
 import './css/App.css';
-import MainNavbar from './components/MainNavbar';
+import { AuthContextProvider } from './context/AuthContextProvider';
+import MainRouter from './MainRouter';
 
-// Page imports
-import Landing from './pages/Landing';
-import About from './pages/About';
-import ManageIdeas from './pages/ManageIdeas';
-import SubmitIdeas from './pages/SubmitIdeas';
+axios.defaults.withCredentials = true;
 
 function App() {
-
   return (
-    <Router>
-      <MainNavbar/>
-      <Switch>
-        <Route path="/" exact component={Landing}/>
-        <Route path="/SubmitIdeas" component={SubmitIdeas}/>
-        <Route path="/About" component={About}/>
-        <Route path="/ManageIdeas" component={ManageIdeas}/>
-      </Switch>
-    </Router>
+    <AuthContextProvider>
+      <MainRouter />
+    </AuthContextProvider>
   );
 }
 

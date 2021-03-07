@@ -88,4 +88,20 @@ router.get("/logout", (req, res) => {
     .send();
 })
 
+// Check if the user is logged in or not.
+router.get("/loggedin", (req, res) => {
+    try {
+        const token = req.cookies.token;
+
+        if (!token) res.json(false);
+
+        jwt.verify(token, process.env.JWT_SECRET);
+
+        res.send(true);
+    } catch(err) {
+        res.json(false);
+    }
+
+});
+
 module.exports = router;

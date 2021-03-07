@@ -2,7 +2,6 @@ import React from 'react';
 import Idea from './Idea';
 
 const Ideas = ({ideas, manage=false, setIdeas=null, category=null}) => {
-    console.log(ideas);
     return (
         <div id="ideaListing">
             {ideas.map((ideaObject) => (
