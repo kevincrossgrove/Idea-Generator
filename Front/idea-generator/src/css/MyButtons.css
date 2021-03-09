@@ -1,3 +1,11 @@
+* {
+    color: #fff;
+  }
+
+#MyButtonsPage {
+  font-family: 'Staatliches', cursive;
+}
+
 /* The side navigation menu */
 .sidebar {
     margin: 0;
@@ -15,6 +23,7 @@
     color: white;
     padding: 16px;
     text-decoration: none;
+    font-size: 150%;
   }
 
   /* Links on mouse-over */
@@ -27,7 +36,7 @@
   div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: 1000px;
+    height: 100%;
   }
   
   /* On screens that are less than 700px wide, make the sidebar into a topbar */

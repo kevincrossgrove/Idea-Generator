@@ -1,0 +1,29 @@
+#myButton {
+    background-color: rgb(65, 156, 12);
+    min-width: 15vw;
+    max-width: 25vw;
+    min-height: 100px;
+    max-height: 125px;
+    font-size: 150%;
+    border-radius: 20px;
+}
+
+.userIdeas {
+    padding-top: 2vh;
+    font-family: 'Staatliches', cursive;
+}
+
+.userIdeas h1 {
+    border-bottom: 2px solid currentColor;
+}
+
+.userIdeas h4 {
+    background-color: rgba(103, 144, 255, 0.527);
+    margin: 2vh 0 2vh 0;
+    border-radius: 100px;
+    font-family: 'Staatliches', cursive;
+}
+
+.form-label {
+    font-size: 150%;
+}
