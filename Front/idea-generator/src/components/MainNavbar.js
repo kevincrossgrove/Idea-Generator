@@ -15,6 +15,7 @@ const MainNavbar = () => {
         <Navbar.Collapse id="navItems">
             <Nav>
                 <Nav.Link as={Link} to='/' id="navLink" >Home</Nav.Link>
+                {loggedIn && <Nav.Link as={Link} to='/mybuttons' id="navLink" >My Buttons</Nav.Link>}
                 <Nav.Link as={Link} to='/submitideas' id="navLink" >Submit Ideas</Nav.Link>
                 <Nav.Link as={Link} to='/about' id="navLink" >About</Nav.Link>
                 {loggedIn && <Nav.Link as={Link} to='/manageideas' id="navLink" >Manage</Nav.Link>}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Container, Row, Button, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 const Register = () => {
     const [email, setEmail] = useState('');
