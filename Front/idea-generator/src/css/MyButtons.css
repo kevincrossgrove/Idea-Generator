@@ -1,9 +1,9 @@
-body {
-    color: #fff;
-  }
+* {
+  font-family: 'Montserrat', sans-serif;
+}
 
-#MyButtonsPage {
-  font-family: 'Staatliches', cursive;
+body {
+  color: #fff;
 }
 
 /* The side navigation menu */
@@ -24,12 +24,25 @@ body {
     padding: 16px;
     text-decoration: none;
     font-size: 150%;
+    cursor: pointer;
   }
 
-  /* Links on mouse-over */
+  .sidebar-button {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: small;
+  }
+
   .sidebar-item:hover:not(.active) {
     background-color: #555;
     color: white;
+  }
+
+  .sidebar-button:hover {
+    background-color: rgb(0, 138, 7);
   }
   
   /* Page content. The value of the margin-left property should match the value of the sidebar's width property */

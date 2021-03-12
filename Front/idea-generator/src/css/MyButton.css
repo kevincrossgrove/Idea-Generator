@@ -6,6 +6,7 @@
     max-height: 125px;
     font-size: 150%;
     border-radius: 20px;
+    color: #fff;
 }
 
 .userIdeas {
@@ -26,4 +27,14 @@
 
 .form-label {
     font-size: 150%;
+}
+
+#saveButton {
+    margin: auto;
+    background-color: red;
+    color: #fff;
+    width: 30%;
+    height: 4vh;
+    border-radius: 7px;
+    margin-top: 5vh;
 }
