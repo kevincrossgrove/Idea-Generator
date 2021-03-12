@@ -19,7 +19,7 @@ mongoose.connect(process.env.MDB_CONNECT, { useNewUrlParser: true }, (err) => {
   console.log('Connected to Database');
 });
 
-// Will use this on all endpoints, regardless of the path.
+// Will use these on all endpoints, regardless of the path.
 app.use(express.json());
 app.use(cookieParser());
 // Set what domains can use this server, right now that is Localhost 3000.
