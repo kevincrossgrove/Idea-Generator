@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
         const newUser = new User({ email, passwordHash });
         const savedUser = await newUser.save();
 
-        // Sign the token
+        // Sign the token. Here we are creating a token with the user's ID. This token then becomes a cookie for the website
         const token = jwt.sign({
             user: savedUser._id
         }, process.env.JWT_SECRET);
