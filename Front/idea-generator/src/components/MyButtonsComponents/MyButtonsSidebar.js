@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { loadButtons } from '../../logic/MyButtonsLogic';
-import { randomShuffle } from '../../logic/DbLogic';
 
-const MyButtonsSidebar = ({setButtonData, setContent}) => {
+const MyButtonsSidebar = ({setButtonData, setContent, setListData}) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -16,6 +15,11 @@ const MyButtonsSidebar = ({setButtonData, setContent}) => {
         });
 
         setContent(button.contentArray);
+
+        setListData({
+            position: -1,
+            length: button.contentArray.length
+        });
     }
 
     return (

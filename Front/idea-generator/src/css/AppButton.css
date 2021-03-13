@@ -9,6 +9,7 @@
     font-family: 'Julius Sans One', sans-serif;
     text-shadow: 2px 2px 0px #000;
     border: 2px solid black;
+    position: relative;
 }
 
 #generateButton:disabled {
@@ -17,6 +18,11 @@
 
 #backButton:disabled {
     opacity: 0.5;
+}
+
+#backButton {
+    position: absolute;
+    left: 310px;
 }
 
 #resetButton {

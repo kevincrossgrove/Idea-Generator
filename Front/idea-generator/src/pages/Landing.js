@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
 
-import { GenerateButton, ResetButton, BackButton } from '../components/AppButton';
+import { GenerateButton, ResetButton } from '../components/AppButton';
 import { loadCategory } from '../logic/DbLogic';  
 
 function Landing() {
@@ -13,9 +13,8 @@ function Landing() {
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
         position: -1,
-        length: ideas.length ?? 0
+        length: 0
     }); 
-    const [back, setBack] = useState(listData.position > 0);  
 
     // Load category, and clear result when the category is switched
     // NOTE: Due to asynchronicity, Idea/Reset are removed before Category is loaded.
@@ -60,8 +59,7 @@ function Landing() {
             <Row>
                 <Col md={12} align="center">
                     <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}
-                                    listData={listData} setListData={setListData}/>
-                    {listData.position > 0 && <BackButton listData={listData} setListData={setListData} back={back} setBack={setBack}/> }
+                                    listData={listData} setListData={setListData} />
                 </Col>
                 
             </Row>

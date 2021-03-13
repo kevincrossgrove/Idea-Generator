@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { randomShuffle } from './DbLogic';
 
 export const saveButton = async (buttonName, content, color, setButtonName, setButtonContent) => {
     await axios.post('/button', {
@@ -17,6 +18,7 @@ export const saveButton = async (buttonName, content, color, setButtonName, setB
 
 export const loadButtons = async (setData) => {
     await axios.get('/button').then(response => {
+        randomShuffle(response.data);
         setData(response.data);
     });
 }

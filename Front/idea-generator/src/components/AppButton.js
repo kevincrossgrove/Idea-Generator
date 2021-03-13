@@ -2,28 +2,30 @@ import React from 'react';
 import '../css/AppButton.css';
 import { VscArrowLeft } from "react-icons/vsc";
 
-export const GenerateButton = ({title, onClickFunction, loading}) => {
+export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, back, setBack}) => {
     return (
         <button id="generateButton" 
             disabled={loading}
             onClick={onClickFunction}>
             {loading && <span>Loading</span>}
             {!loading && <span>{title}</span>}
+            {listData.position > 0 && <BackButton listData={listData} setListData={setListData} /> }
         </button>
     );  
 }
 
 // Go back to the previous idea within the category list.
-export const BackButton = ({listData, setListData, back}) => {
-    const goBack = () => {
+export const BackButton = ({listData, setListData }) => {
+    const goBack = (event) => {
+        event.stopPropagation();
         setListData({...listData, position: listData.position-1});
     }
 
     return (
-        <span id="backButton" disabled={!back}>
+        <span id="backButton" >
             <VscArrowLeft style={{ color: 'black', cursor: 'pointer'}}
             size='2em'
-            onClick={() => goBack()}/>
+            onClick={(event) => goBack(event)}/>
         </span>
     );
 }
