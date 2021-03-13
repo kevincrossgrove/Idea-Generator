@@ -16,9 +16,12 @@ export const saveButton = async (buttonName, content, color, setButtonName, setB
       });
 }
 
+// Load the buttons, but also shuffle the content.
 export const loadButtons = async (setData) => {
     await axios.get('/button').then(response => {
-        randomShuffle(response.data);
+        response.data.forEach((button) => {
+            randomShuffle(button.contentArray);
+        })
         setData(response.data);
     });
 }
