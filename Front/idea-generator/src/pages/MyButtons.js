@@ -5,10 +5,12 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import CreateButton from '../components/MyButtonsComponents/CreateButton';
 import MyButtonsSidebar from '../components/MyButtonsComponents/MyButtonsSidebar';
 import { Container } from 'react-bootstrap';
+import { GenerateButton, ResetButton } from '../components/AppButton';
 
 const MyButtons = () => {
     const [createButton, setCreateButton] = useState(false);
     const [myButtons, setMyButtons] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [buttonData, setButtonData] = useState({
         name: '',
         color: 'red'
@@ -60,7 +62,8 @@ const MyButtons = () => {
                     {buttonData.name === ''  && <h1 >Select a button</h1>}
                     {buttonData.name !== '' && 
                     <>
-                        <button id="myButton" onClick={() => setResult()}>{buttonData.name}</button>
+                        <GenerateButton title={buttonData.name} onClickFunction={() => setResult()}
+                        loading={loading} listData={listData} setListData={setListData} />
                         <h5 id="currentContent">{currentContent}</h5> 
                         {content.length < 1 && <h5>This button has no content added. Press edit to add content.</h5>}
                     </>}

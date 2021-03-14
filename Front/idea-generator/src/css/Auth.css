@@ -1,0 +1,27 @@
+.authContainer {
+    margin-top: 5vh;
+    background-color: #fff;
+    padding: 15px 40px 20px 40px;
+    border-radius: 10px;
+    border: 2px solid black;
+    text-align: left;
+}
+
+#loginTitle {
+    color: black;
+}
+
+.form-label {
+    color: black;
+    font-size: small !important;
+}
+
+#loginButton {
+    width: 100%;
+    margin-top: 5vh;
+}
+
+#createAccountButton {
+    width: 100%;
+    margin-top: 1vh;
+}

@@ -9,7 +9,7 @@ function Landing() {
     const [reset, setReset] = useState(false);
     const [loading, setLoading] = useState(false);
     const [wordCategory, setCategory] = useState(() => localStorage.getItem('category') ?? 'Ideas');
-    const [ideas, setIdeas] = useState([]);
+    const [ideas, setIdeas] =    useState([]);
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
         position: -1,
@@ -61,7 +61,6 @@ function Landing() {
                     <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}
                                     listData={listData} setListData={setListData} />
                 </Col>
-                
             </Row>
             <Row>
                 <div id='result'>{idea}</div>
