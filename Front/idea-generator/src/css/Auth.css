@@ -9,19 +9,53 @@
 
 #loginTitle {
     color: black;
+    margin-right: 350px;
 }
 
 .form-label {
     color: black;
     font-size: small !important;
+    margin-top: 10px;
 }
 
 #loginButton {
     width: 100%;
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 
 #createAccountButton {
     width: 100%;
     margin-top: 1vh;
+}
+
+#password {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+i {
+    color: black;
+    position: absolute;
+    right: 20px;
+    bottom: 6px;
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none;          
+}
+
+i:hover {
+    color: #00fcb6;
+    cursor: pointer;
+}
+
+#forgotPassword {
+    color: #0275d8;
+    font-size: small;
+    cursor: pointer;
+}
+
+#forgotPassword:hover {
+    text-decoration: underline;
+    transition: 2s;
 }

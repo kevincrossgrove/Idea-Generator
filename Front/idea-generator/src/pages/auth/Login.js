@@ -3,13 +3,18 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AuthContext from '../../context/AuthContextProvider';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import '../../css/Auth.css';
+
+const eye = <AiFillEye size={25} />
+const invisibleEye = <AiFillEyeInvisible size={25} />
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const {getLoggedIn} = useContext(AuthContext);
+    const [visibility, setVisibility] = useState(false);
     const history = useHistory();
 
     const login = async (e) => {
@@ -41,13 +46,15 @@ const Login = () => {
                                 value={email} />
                             <Form.Text className="text-muted">{errorMessage}</Form.Text>
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group id="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
-                                type="password" placeholder="Password" 
+                                type={visibility ? "text" : "password"} placeholder="Password" 
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}  />
+                                 <i onClick={() => setVisibility(!visibility)}>{visibility ? invisibleEye : eye}</i>
                         </Form.Group>
+                        <text id="forgotPassword">Forgot Password?</text>
                         <Button variant="primary" id="loginButton" type="submit">
                             Login
                         </Button>
@@ -58,7 +65,7 @@ const Login = () => {
                 </Col>
             </Row>
         </Container>
-    )
+    );
 }
 
 export default Login;

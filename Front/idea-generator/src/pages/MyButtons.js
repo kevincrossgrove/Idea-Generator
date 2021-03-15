@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import '../css/MyButtons.css';
-import { FaJoomla } from "react-icons/fa";
-import { AiOutlinePlusSquare } from "react-icons/ai";
+import { AiFillPlusCircle, AiFillCaretRight, AiFillCaretDown } from "react-icons/ai";
 import CreateButton from '../components/MyButtonsComponents/CreateButton';
 import MyButtonsSidebar from '../components/MyButtonsComponents/MyButtonsSidebar';
 import { Container } from 'react-bootstrap';
 import { GenerateButton, ResetButton } from '../components/AppButton';
+import { IconContext } from 'react-icons/lib';
 
 const MyButtons = () => {
     const [createButton, setCreateButton] = useState(false);
     const [myButtons, setMyButtons] = useState(false);
+    const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [buttonData, setButtonData] = useState({
         name: '',
@@ -35,21 +36,28 @@ const MyButtons = () => {
     }
 
     return (
+        <IconContext.Provider
+        value={{
+            style: { marginBottom: 3, marginLeft: 8 },
+            size: 25,
+            className: "sideIcon"
+          }}>
         <div id="MyButtonsPage">
             <div className="sidebar">
                 <div className="sidebar-item" onClick={() => {
                         setCreateButton(!createButton);
                         setMyButtons(false);
                     }}>
-                    {/* <AiOutlinePlusSquare /> */}
                     Create Button
+                    <AiFillPlusCircle />
                 </div>
                 <div className="sidebar-item" onClick={() => {
                         setMyButtons(!myButtons);
                         setCreateButton(false);
+                        setOpen(!open);
                     }}>
-                    {/* <FaJoomla /> */}
                     My Buttons
+                    {open ? <AiFillCaretDown/> : <AiFillCaretRight/>}
                 </div>
                 {myButtons && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData}/> }
             </div>
@@ -70,6 +78,7 @@ const MyButtons = () => {
                 </Container>
             </div>}
         </div>
+        </IconContext.Provider>
     );
 }
 
