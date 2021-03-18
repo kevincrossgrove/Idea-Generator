@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { loadButtons } from '../../logic/MyButtonsLogic';
 import { BsPencil, BsFillXSquareFill } from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
+import { Spinner } from 'react-bootstrap';
 
-const MyButtonsSidebar = ({setButtonData, setContent, setListData}) => {
+const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setLoading}) => {
     const [data, setData] = useState([]);
     const [iconVisibility, setIconVisibility] = useState(false);
     const [hoverButton, setHoverButton] = useState('');
 
     useEffect(() => {
         loadButtons(setData);
+        const timeout = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timeout);
     }, []);
 
     const startEditing = (e) => {
@@ -48,7 +51,11 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData}) => {
                 size: 17,
             }}>
             <div>
-                {data.map((button) => (
+                {loading ? (
+                <div id="loading">
+                    <Spinner animation="border" variant="light" />
+                </div>) :
+                data.map((button) => (
                     <div key={button._id} className="sidebar-button" 
                     onClick={() => setPage(button)} 
                     onMouseEnter={(e) => setIcon(e, true)} 

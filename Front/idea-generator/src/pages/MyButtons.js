@@ -12,6 +12,7 @@ const MyButtons = () => {
     const [myButtons, setMyButtons] = useState(false);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [sideLoading, setSideLoading] = useState(false);
     const [buttonData, setButtonData] = useState({
         name: '',
         color: 'red'
@@ -52,6 +53,7 @@ const MyButtons = () => {
                     <AiFillPlusCircle />
                 </div>
                 <div className="sidebar-item" onClick={() => {
+                        setSideLoading(true);
                         setMyButtons(!myButtons);
                         setCreateButton(false);
                         setOpen(!open);
@@ -59,7 +61,7 @@ const MyButtons = () => {
                     My Buttons
                     {open ? <AiFillCaretDown/> : <AiFillCaretRight/>}
                 </div>
-                {myButtons && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData}/> }
+                {myButtons && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData} loading={sideLoading} setLoading={setSideLoading}/> }
             </div>
 
             {createButton && <div className="content">

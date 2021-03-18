@@ -12,28 +12,28 @@
     margin-right: 350px;
 }
 
+#registerTitle {
+    color: black;
+    margin-right: 23px;
+}
+
 .form-label {
     color: black;
     font-size: small !important;
     margin-top: 10px;
 }
 
-#loginButton {
+#topButton {
     width: 100%;
     margin-top: 3vh;
 }
 
-#createAccountButton {
+#bottomButton {
     width: 100%;
     margin-top: 1vh;
 }
 
-#password {
-    position: relative;
-    margin-bottom: 5px;
-}
-
-i {
+#passwordEye {
     color: black;
     position: absolute;
     right: 20px;
@@ -44,7 +44,7 @@ i {
     user-select: none;          
 }
 
-i:hover {
+#passwordEye:hover {
     color: #00fcb6;
     cursor: pointer;
 }
@@ -58,4 +58,15 @@ i:hover {
 #forgotPassword:hover {
     text-decoration: underline;
     transition: 2s;
+}
+
+.registerFormGroup {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.check {
+    position: absolute;
+    right: 20px;
+    top: 43px;
 }

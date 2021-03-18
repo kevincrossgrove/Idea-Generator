@@ -18,3 +18,7 @@
 1. Add authentication / accounts
 2. Add ability for logged in users to create their own buttons
 3. Deploy to Heroku for testing on mobile
+
+                Random Features
+1. Profiles with a leaderboard for highest contributors, badges
+2. A time elapsed on website somewhere lol

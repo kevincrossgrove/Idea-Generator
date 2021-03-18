@@ -9,6 +9,7 @@
   color: #fff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 30px;
+  transition: 500ms ease-in-out;
 }
 
 .row {

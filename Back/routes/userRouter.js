@@ -11,19 +11,19 @@ router.post("/", async (req, res) => {
 
         // Validation ( Most of this should be added to Client side, like requiring fields. )
         if (!email || !password || !passwordVerify) 
-            return res.status(400).json({errorMessage: "Please enter all required fields."});
+            return res.status(400).json({errorMessage: "Please enter all required fields.", code: 1});
 
         if (password.length < 8) 
-            return res.status(400).json({errorMessage: "Password must be 8 characters or greater."});
+            return res.status(400).json({errorMessage: "Password must be 8 characters or greater.", code: 2});
 
         if (password.length !== passwordVerify.length) 
-            return res.status(400).json({errorMessage: "Password's did not match up."});
+            return res.status(400).json({errorMessage: "Password's did not match up.", code: 3});
 
         // Verify that the new account's email, does not already exist in the DB.
         const existingUser = await User.findOne({email: email});
         
         if (existingUser)
-            return res.status(400).json({errorMessage: "An account with this email already exists."});
+            return res.status(400).json({errorMessage: "An account with this email already exists.", code: 4});
 
         // Hash the password
         const salt = await bcrypt.genSalt();
@@ -98,7 +98,19 @@ router.get("/loggedin", (req, res) => {
     } catch(err) {
         res.json(false);
     }
+});
 
+// Get the logged in user data
+router.get("/user", async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const userData = await User.findOne({_id: decoded.user});
+        res.send(userData);
+    } catch(err) {
+        res.status(401).json({errorMessage: "Unauthorized"});
+    }
 });
 
 module.exports = router;

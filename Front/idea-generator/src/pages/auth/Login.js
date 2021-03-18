@@ -52,13 +52,15 @@ const Login = () => {
                                 type={visibility ? "text" : "password"} placeholder="Password" 
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}  />
-                                 <i onClick={() => setVisibility(!visibility)}>{visibility ? invisibleEye : eye}</i>
+                                 <i id="passwordEye" onClick={() => setVisibility(!visibility)}>
+                                     {visibility ? invisibleEye : eye}
+                                </i>
                         </Form.Group>
                         <text id="forgotPassword">Forgot Password?</text>
-                        <Button variant="primary" id="loginButton" type="submit">
+                        <Button variant="primary" id="topButton" type="submit">
                             Login
                         </Button>
-                        <Button variant="success" id="createAccountButton" type="submit">
+                        <Button variant="success" id="bottomButton" onClick={() => history.push('/register')}>
                             Create Account
                         </Button>
                     </Form>

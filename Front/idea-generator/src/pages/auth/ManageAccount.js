@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 
 const ManageAccount = () => {
     const {getLoggedIn} = useContext(AuthContext);
+    const {userData} = useContext(AuthContext);
     const history = useHistory();
 
     const logout = async () => {
@@ -18,6 +19,7 @@ const ManageAccount = () => {
         <Container>
             <Row>
                 <Col align="center">
+                    Hello, {userData.email}
                     <Button variant="danger" onClick={logout}>
                         Logout
                     </Button>
