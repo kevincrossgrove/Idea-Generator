@@ -8,8 +8,8 @@
     text-align: center;
 }
 
-#submitButton {
-
+#submitTextArea {
+    width: 575px;
 }
 
 #submitButton:focus {
@@ -19,4 +19,10 @@
 
 #errorMessage {
     color: rgb(255, 25, 25);
+}
+
+@media only screen and (max-width: 600px) {
+    #submitTextArea {
+        width: 475px;
+    }
 }

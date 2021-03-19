@@ -78,7 +78,7 @@ const Register = () => {
                 <Col md="auto" className="authContainer">
                     <h1 id="registerTitle">Create a new account</h1>
                     <Form onSubmit={register}>
-                        <Form.Group className="registerFormGroup">
+                        <Form.Group className="registerFormGroup" autoComplete="new-password">
                             <Form.Label>Email</Form.Label>
                             <Form.Control placeholder="Email"
                             onChange={(e) => updateEmail(e.target.value)}
@@ -86,7 +86,7 @@ const Register = () => {
                             <i className="check">{emailValid && checkmark}</i>
                             <Form.Text className="text-muted">{emailError}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="registerFormGroup">
+                        <Form.Group className="registerFormGroup" autoComplete="new-password">
                             <Form.Label>Password (8+ characters, at least 1 letter, number, special character)</Form.Label>
                             <Form.Control type="password" placeholder="Password"
                             onChange={(e) => updatePassword(e.target.value)}
@@ -94,7 +94,7 @@ const Register = () => {
                             <i className="check">{passwordValid && checkmark}</i>
                             <Form.Text className="text-muted">{passwordError}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="registerFormGroup">
+                        <Form.Group className="registerFormGroup" autoComplete="new-password">
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" placeholder="Verify Password"
                             onChange={(e) => updateVerify(e.target.value)}

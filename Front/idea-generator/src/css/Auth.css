@@ -33,6 +33,10 @@
     margin-top: 1vh;
 }
 
+#password {
+    position: relative;
+}
+
 #passwordEye {
     color: black;
     position: absolute;

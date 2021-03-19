@@ -31,21 +31,30 @@ const SubmitIdeas = () => {
     }
 
     return (
-        <Container>
+        <Container align="center">
             <Row>
                 <h1 id="submitTitle">Submit Ideas</h1>
             </Row>
-            <Row>
-                <ButtonGroup>
-                    <Button onClick={() => updateCategory('Ideas')} autoFocus={true}>Ideas</Button>
-                    <Button onClick={() => updateCategory('Motivation')}>Motivation</Button>
-                    <Button onClick={() => updateCategory('Pog')}>Pog</Button>
-                    <Button onClick={() => updateCategory('Saved')}>Saved</Button>
-                </ButtonGroup>
+            <Row className="justify-content-center">
+                <Col md="auto">
+                    <ButtonGroup>
+                        <Button onClick={() => updateCategory('Ideas')} autoFocus={true}>Ideas</Button>
+                        <Button onClick={() => updateCategory('Motivation')}>Motivation</Button>
+                        <Button onClick={() => updateCategory('Pog')}>Pog</Button>
+                        <Button onClick={() => updateCategory('Saved')}>Saved</Button>
+                    </ButtonGroup>
+                </Col>
             </Row>
-            <Row>
-                <Form.Control as="textarea" ref={formRef} rows={3} placeholder="Enter your idea here"
-                onChange={(e) => setText(e.target.value)} />
+            <Row className="justify-content-center">
+                <Col md="auto">
+                    <Form.Control 
+                    id="submitTextArea" 
+                    as="textarea" 
+                    ref={formRef} 
+                    rows={4} 
+                    placeholder="Enter your idea here"
+                    onChange={(e) => setText(e.target.value)} />
+                </Col>
             </Row>
             <Row>
                 <h4 id="categoryTitle">Category Selected: {category}</h4>
