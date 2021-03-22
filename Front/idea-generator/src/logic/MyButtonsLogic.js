@@ -25,3 +25,10 @@ export const loadButtons = async (setData) => {
         setData(response.data);
     });
 }
+
+// Delete a button
+export const deleteButton = async (id, setData) => {
+    await axios.delete(`/button/${id}`).then(response => 
+        console.log(response)
+    ).then(() => loadButtons(setData));
+}

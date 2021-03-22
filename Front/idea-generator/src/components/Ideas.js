@@ -11,4 +11,4 @@ const Ideas = ({ideas, manage=false, setIdeas=null, category=null}) => {
     )
 }
 
-export default Ideas
+export default Ideas;

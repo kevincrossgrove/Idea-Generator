@@ -15,11 +15,20 @@ const ManageAccount = () => {
         history.push('/');
     }
 
+    const displayDate = () => {
+        const date = new Date(userData.creationTime)
+        const month = new Intl.DateTimeFormat('en-US', { month: 'long'}).format(date);
+        const year = date.getFullYear();
+
+        return `${month} ${year}`;
+    }
+
     return (
         <Container>
             <Row>
                 <Col align="center">
-                    Hello, {userData.email}
+                    <p>Welcome {userData.email}!</p>
+                    <p>Joined {displayDate()}</p>
                     <Button variant="danger" onClick={logout}>
                         Logout
                     </Button>

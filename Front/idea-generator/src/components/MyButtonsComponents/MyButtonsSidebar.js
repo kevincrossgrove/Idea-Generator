@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { loadButtons } from '../../logic/MyButtonsLogic';
+import { loadButtons, deleteButton } from '../../logic/MyButtonsLogic';
 import { BsPencil, BsFillXSquareFill } from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
 import { Spinner } from 'react-bootstrap';
@@ -15,14 +15,15 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setL
         return () => clearTimeout(timeout);
     }, []);
 
-    const startEditing = (e) => {
+    const startEditing = (e, id) => {
         e.stopPropagation();
         console.log("Starting Editing");
     }
 
-    const deleteIcon = (e) => {
+    const deleteIcon = (e, id) => {
         e.stopPropagation();
-        console.log("Deleting");
+        console.log(id);
+        deleteButton(id, setData);
     }
 
     const setIcon = (e, bool) => {
@@ -62,8 +63,8 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setL
                     onMouseLeave={(e) => setIcon(e, false)}>
                         {button.buttonName}
                     {iconVisibility && hoverButton === button.buttonName && ( <>
-                        <BsPencil id="editIcon" onClick={(e) => startEditing(e)}/>
-                        <BsFillXSquareFill id="deleteIcon" onClick={(e) => deleteIcon(e)}/> </>) }
+                        <BsPencil id="editIcon" onClick={(e) => startEditing(e, button._id)}/>
+                        <BsFillXSquareFill id="deleteIcon" onClick={(e) => deleteIcon(e, button._id)}/> </>) }
                     </div>
                 ))}
             </div>

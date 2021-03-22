@@ -81,8 +81,21 @@ div.content {
   margin-top: 5vh;
 }
 
-#currentContent {
+.contentContainer {
   margin-top: 3vh;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(35, 34, 44);
+  min-height: 75px;
+  min-width: 300px;
+  width: 400px; 
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+#currentContent {
+  
 }
 
 #editIcon {

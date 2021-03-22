@@ -3,8 +3,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Rewatch Video 5
-
+// Creating a new account, as well as logging that account in.
 router.post("/", async (req, res) => {
     try {
         const {email, password, passwordVerify} = req.body;
@@ -30,7 +29,10 @@ router.post("/", async (req, res) => {
         const passwordHash = await bcrypt.hash(password, salt);
 
         // Save the new user account to the DB
-        const newUser = new User({ email, passwordHash });
+        const newUser = new User({ 
+            email: email, 
+            passwordHash: passwordHash,
+            creationTime: new Date() });
         const savedUser = await newUser.save();
 
         // Sign the token. Here we are creating a token with the user's ID. This token then becomes a cookie for the website

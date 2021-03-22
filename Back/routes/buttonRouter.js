@@ -32,4 +32,31 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+// Deleting the Button a user created.
+router.delete('/:id', auth, getButton, async (req, res) => {
+    try{
+        res.button.remove();
+        res.json({ message: `Deleted Button: ${res.button.Button}`});
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Get an individual Button a user created
+async function getButton(req, res, next) {
+    let button;
+
+    try {
+        button = await Button.findById(req.params.id);
+        if (button == null) 
+            return res.status(404).json({ message: "Cannot find button."})        
+    } catch (err) {
+        console.log(err);
+    }
+
+    res.button = button;
+    next();
+}
+
 module.exports = router;

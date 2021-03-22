@@ -25,7 +25,8 @@ router.get('/:category', async (req, res) => {
 router.post('/', async (req, res) => {
     const idea = new Idea({
         category: req.body.category,
-        idea: req.body.idea
+        idea: req.body.idea,
+        creationTime: new Date()
     });
 
     // Status 201 means successfully created an object

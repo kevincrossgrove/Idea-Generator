@@ -8,21 +8,32 @@ import { GenerateButton, ResetButton } from '../components/AppButton';
 import { IconContext } from 'react-icons/lib';
 
 const MyButtons = () => {
+    // Keeps track of when createButton is open/closed
     const [createButton, setCreateButton] = useState(false);
+
+    // Keeps track of when MyButtons is open/closed
     const [myButtons, setMyButtons] = useState(false);
+
+    // Keeps track of when sidebar buttons are open/closed
     const [open, setOpen] = useState(false);
+
+    // For displaying loading whilst individual Buttons load.
     const [loading, setLoading] = useState(false);
+
+    // For displaying a loading symbol whilst sidebar buttons load.
     const [sideLoading, setSideLoading] = useState(false);
-    const [buttonData, setButtonData] = useState({
-        name: '',
-        color: 'red'
-    });
+
+    // The data for the button currently being displayed.
+    const [buttonData, setButtonData] = useState({ name: '', color: 'red'});
+
+    // The content for the current Button
     const [content, setContent] = useState([]);
+
+    // The individual content currently displaying from content list
     const [currentContent, setCurrentContent] = useState('');
-    const [listData, setListData] = useState({
-        position: -1,
-        length: content.length ?? 0
-    });
+
+    // UseState that helps skeeps track of what content is being displayed
+    const [listData, setListData] = useState({ position: -1, length: content.length ?? 0 });
 
     useEffect(() => {
         const theContent = (listData.position === -1 || listData.position >= listData.length) 
@@ -48,6 +59,7 @@ const MyButtons = () => {
                 <div className="sidebar-item" onClick={() => {
                         setCreateButton(!createButton);
                         setMyButtons(false);
+                        setOpen(false);
                     }}>
                     Create Button
                     <AiFillPlusCircle />
@@ -64,17 +76,26 @@ const MyButtons = () => {
                 {myButtons && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData} loading={sideLoading} setLoading={setSideLoading}/> }
             </div>
 
-            {createButton && <div className="content">
+            {createButton && 
+            <div className="content">
                 <CreateButton />
             </div> }
-            {myButtons && <div className="content">
+
+            {myButtons &&
+            <div className="content">
                 <Container align="center" id="myButtonContainer">
                     {buttonData.name === ''  && <h1 >Select a button</h1>}
                     {buttonData.name !== '' && 
                     <>
-                        <GenerateButton title={buttonData.name} onClickFunction={() => setResult()}
-                        loading={loading} listData={listData} setListData={setListData} />
-                        <h5 id="currentContent">{currentContent}</h5> 
+                        <GenerateButton 
+                        title={buttonData.name} 
+                        onClickFunction={() => setResult()}
+                        loading={loading} 
+                        listData={listData} 
+                        setListData={setListData} />
+                        {listData.position > -1 && <div className="contentContainer">
+                            <h5 id="currentContent">{currentContent}</h5>
+                        </div>}
                         {content.length < 1 && <h5>This button has no content added. Press edit to add content.</h5>}
                     </>}
                 </Container>
