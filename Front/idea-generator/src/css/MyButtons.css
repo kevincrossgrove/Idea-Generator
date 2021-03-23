@@ -92,10 +92,13 @@ div.content {
   width: 400px; 
   max-width: 500px;
   border-radius: 10px;
+  overflow-wrap: break-word;
 }
 
 #currentContent {
-  
+  min-width: 290px;
+  width: 375px;
+  max-width: 475px;
 }
 
 #editIcon {
@@ -118,4 +121,36 @@ div.content {
 #deleteIcon:hover {
   height: 20px;
   width: 20px;
+}
+
+#viewAllButton {
+  background-color: #0019a7;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  -webkit-user-select: none;  
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;   
+}
+
+.contentListContainer {
+  margin-top: 25px;
+  background-color: rgb(39, 37, 37);
+  color: white;
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 15px 50px 15px 50px;
+  /* overflow-y: scroll; */
+}
+
+.contentListItem {
+  border: 2px solid black;
+  background: linear-gradient(to right, rgb(5, 134, 255), rgb(4, 58, 207)); 
+  text-align: left;
+  padding: 10px 17px 10px 17px;
+  margin-bottom: 5px;
+  border-radius: 7px;
+  overflow-wrap: break-word;
 }

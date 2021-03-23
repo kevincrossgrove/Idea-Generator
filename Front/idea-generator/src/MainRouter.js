@@ -18,7 +18,7 @@ const MainRouter = () => {
 
     return (
         <Router>
-            <MainNavbar/>
+            <MainNavbar />
             <Switch>
                 <Route path="/" exact component={Landing}/>
                 {loggedIn && <Route path="/MyButtons" component={MyButtons}/>}

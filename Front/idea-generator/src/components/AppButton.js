@@ -2,14 +2,14 @@ import React from 'react';
 import '../css/AppButton.css';
 import { VscArrowLeft } from "react-icons/vsc";
 
-export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, back, setBack}) => {
+export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, back, setBack, currentVisible}) => {
     return (
         <button id="generateButton" 
             disabled={loading}
             onClick={onClickFunction}>
-            {loading && <span>Loading</span>}
-            {!loading && <span>{title}</span>}
-            {listData.position > 0 && <BackButton listData={listData} setListData={setListData} /> }
+            {loading && <span className="buttonTitle">Loading</span>}
+            {!loading && <span className="buttonTitle">{title}</span>}
+            {listData.position > 0 && currentVisible && <BackButton listData={listData} setListData={setListData} /> }
         </button>
     );  
 }

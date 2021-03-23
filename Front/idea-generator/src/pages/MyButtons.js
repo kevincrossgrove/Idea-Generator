@@ -6,10 +6,15 @@ import MyButtonsSidebar from '../components/MyButtonsComponents/MyButtonsSidebar
 import { Container } from 'react-bootstrap';
 import { GenerateButton, ResetButton } from '../components/AppButton';
 import { IconContext } from 'react-icons/lib';
+import ContentList from '../components/MyButtonsComponents/ContentList';
+import EditMyButton from '../components/MyButtonsComponents/EditMyButton';
 
 const MyButtons = () => {
     // Keeps track of when createButton is open/closed
     const [createButton, setCreateButton] = useState(false);
+
+    // Keeps track of when EditButton is open/closed
+    const [editButton, setEditButton] = useState(false);
 
     // Keeps track of when MyButtons is open/closed
     const [myButtons, setMyButtons] = useState(false);
@@ -32,8 +37,14 @@ const MyButtons = () => {
     // The individual content currently displaying from content list
     const [currentContent, setCurrentContent] = useState('');
 
+    // Keeps track of if the current Content should be visible or not.
+    const [currentVisible, setCurrentVisible] = useState(true);
+
     // UseState that helps skeeps track of what content is being displayed
     const [listData, setListData] = useState({ position: -1, length: content.length ?? 0 });
+
+    // Keeps trach when the buttons entire content should be displayed or not
+    const [viewAll, setViewAll] = useState(false);
 
     useEffect(() => {
         const theContent = (listData.position === -1 || listData.position >= listData.length) 
@@ -42,9 +53,16 @@ const MyButtons = () => {
     }, listData.listPosition);
 
     const setResult = () => {
-        if (listData.position < listData.length) {
+        if (listData.position < listData.length)
             setListData({...listData, position: listData.position + 1});
-        }
+
+        setViewAll(false);
+        setCurrentVisible(true);
+    }
+
+    const setAllContent = () => {
+        setViewAll(!viewAll);
+        setCurrentVisible(false);
     }
 
     return (
@@ -57,7 +75,7 @@ const MyButtons = () => {
         <div id="MyButtonsPage">
             <div className="sidebar">
                 <div className="sidebar-item" onClick={() => {
-                        setCreateButton(!createButton);
+                        setCreateButton(!createButton); 
                         setMyButtons(false);
                         setOpen(false);
                     }}>
@@ -81,6 +99,11 @@ const MyButtons = () => {
                 <CreateButton />
             </div> }
 
+            {editButton &&
+            <div className="content">
+                <EditMyButton />
+            </div> }
+
             {myButtons &&
             <div className="content">
                 <Container align="center" id="myButtonContainer">
@@ -92,11 +115,16 @@ const MyButtons = () => {
                         onClickFunction={() => setResult()}
                         loading={loading} 
                         listData={listData} 
-                        setListData={setListData} />
-                        {listData.position > -1 && <div className="contentContainer">
+                        setListData={setListData}
+                        currentVisible={currentVisible} />
+                        <p><button onClick={() => setAllContent()} id="viewAllButton">
+                            {viewAll ? "Close": "View"} All Content
+                        </button></p>
+                        {listData.position > -1 && currentVisible && <div className="contentContainer">
                             <h5 id="currentContent">{currentContent}</h5>
                         </div>}
                         {content.length < 1 && <h5>This button has no content added. Press edit to add content.</h5>}
+                        {viewAll && <ContentList content={content} buttonTitle={buttonData.name} />}
                     </>}
                 </Container>
             </div>}

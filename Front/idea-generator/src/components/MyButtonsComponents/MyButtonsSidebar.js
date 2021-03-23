@@ -43,6 +43,7 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setL
             position: -1,
             length: button.contentArray.length
         });
+        setLoading(false);
     }
 
     return (
