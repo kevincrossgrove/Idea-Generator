@@ -29,7 +29,7 @@ const MyButtons = () => {
     const [sideLoading, setSideLoading] = useState(false);
 
     // The data for the button currently being displayed.
-    const [buttonData, setButtonData] = useState({ name: '', color: 'red'});
+    const [buttonData, setButtonData] = useState({id: undefined, name: '', color: 'red'});
 
     // The content for the current Button
     const [content, setContent] = useState([]);
@@ -53,11 +53,16 @@ const MyButtons = () => {
     }, listData.listPosition);
 
     const setResult = () => {
-        if (listData.position < listData.length)
+        if (listData.position < listData.length) 
             setListData({...listData, position: listData.position + 1});
+        
 
         setViewAll(false);
         setCurrentVisible(true);
+    }
+
+    const startEditing = () => {
+        console.log(buttonData);
     }
 
     const setAllContent = () => {
@@ -84,14 +89,14 @@ const MyButtons = () => {
                 </div>
                 <div className="sidebar-item" onClick={() => {
                         setSideLoading(true);
-                        setMyButtons(!myButtons);
+                        setMyButtons(true);
                         setCreateButton(false);
                         setOpen(!open);
                     }}>
                     My Buttons
                     {open ? <AiFillCaretDown/> : <AiFillCaretRight/>}
                 </div>
-                {myButtons && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData} loading={sideLoading} setLoading={setSideLoading}/> }
+                {open && <MyButtonsSidebar setButtonData={setButtonData} setContent={setContent} setListData={setListData} loading={sideLoading} setLoading={setSideLoading}/> }
             </div>
 
             {createButton && 
@@ -117,9 +122,14 @@ const MyButtons = () => {
                         listData={listData} 
                         setListData={setListData}
                         currentVisible={currentVisible} />
-                        <p><button onClick={() => setAllContent()} id="viewAllButton">
+                        <p>
+                        <button onClick={() => startEditing()} id="editButton">
+                            Edit
+                        </button>
+                        <button onClick={() => setAllContent()} id="viewAllButton">
                             {viewAll ? "Close": "View"} All Content
-                        </button></p>
+                        </button>
+                        </p>
                         {listData.position > -1 && currentVisible && <div className="contentContainer">
                             <h5 id="currentContent">{currentContent}</h5>
                         </div>}

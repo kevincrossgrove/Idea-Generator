@@ -123,8 +123,18 @@ div.content {
   width: 20px;
 }
 
+#editButton {
+  color: white;
+  background-color: rgb(56, 56, 56);
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
 #viewAllButton {
+  margin: 3px;
   background-color: #0019a7;
+  border: none;
   border-radius: 10px;
   color: white;
   padding: 10px;

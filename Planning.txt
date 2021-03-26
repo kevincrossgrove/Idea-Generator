@@ -22,3 +22,9 @@
                 Random Features
 1. Profiles with a leaderboard for highest contributors, badges
 2. A time elapsed on website somewhere lol
+
+                FIXES
+1. Submit TextArea overflowing on mobile
+2. NavBar menu not closing when you select another option on mobile
+3. Can't login in or sign up on Heroku -net::ERR_CONNECTION_REFUSED
+4. Anyone can submit ideas as of now

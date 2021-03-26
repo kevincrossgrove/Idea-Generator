@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root{
+  background-image: linear-gradient(to bottom, rgb(5, 134, 255), rgb(4, 58, 207)); 
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.result {
+  display: inline-block;
+  border-radius: 15px;
+  margin: auto;
+  background-color: rgb(27, 27, 32);
+  max-width: 500px;
+  padding: 20px;
+  overflow-wrap: break-word;
+  box-shadow: 
+    -5px -5px 5px 0 rgba(255, 255, 255, 0.164),
+    7px 7px 7px 0 rgba(0, 0, 0, 0.349)
+}
+
+.result:first-child{
+  text-align: center;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: 500ms ease-in-out;
+  overflow-wrap: break-word;
+}
+
+.row {
+  margin-top: 2vh;
+}

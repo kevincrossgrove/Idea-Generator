@@ -22,7 +22,6 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setL
 
     const deleteIcon = (e, id) => {
         e.stopPropagation();
-        console.log(id);
         deleteButton(id, setData);
     }
 
@@ -33,6 +32,7 @@ const MyButtonsSidebar = ({setButtonData, setContent, setListData, loading, setL
 
     const setPage = (button) => {
         setButtonData({
+            id: button._id,
             name: button.buttonName,
             color: button.color
         });

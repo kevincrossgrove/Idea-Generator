@@ -1,0 +1,150 @@
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    position: absolute;
+    font-weight: bolder;
+    left: 5%;
+    transition: all ease-in .15s;
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+    border-radius: 10px;
+    transition: all linear .5s;
+    margin: .5rem .2rem .5rem .2rem;
+    padding: .5rem .2rem .5rem .2rem;
+}
+
+.navbar-links li a {
+    margin: 0 .5rem;
+    padding: .50rem .50rem;
+    display: block;
+    text-decoration: none;
+    color: white;
+    transition: all ease-in .15s;
+}
+
+.navbar-links li a:hover {
+    border-radius: 10px;
+    background-color: rgb(0, 32, 216);
+}
+
+.toggle-button {
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.navbar-button {
+    position: absolute;
+    right: 5%;
+    padding: 9px 25px;
+    background-color: rgb(0, 50, 167);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+}
+
+.navbar-button:hover {
+    background-color: rgb(6, 163, 202);;
+}
+
+@media (max-width: 900px) {
+    .brand-title {
+        font-size: 1.25rem;
+        left: 2%;
+    }
+    .navbar-links ul {
+        margin-left: 75px;
+        margin-right: 35px;
+    }
+    .navbar-links li a {
+        font-size: 1rem;
+        padding: .5rem .15rem .5rem .15rem;
+    }
+    .navbar-button {
+        right: 2%;
+    }
+}
+
+@media (max-width: 700px) {
+    .brand-title {
+        margin-bottom: .75rem;
+        margin-top: .5rem;
+        margin-left: .75rem;
+        position: unset;
+    }
+
+    .toggle-button {
+        display:flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links ul {
+        margin: 0 !important;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links li {
+        margin: 0 !important;
+        text-align: center;
+    }
+
+    .navbar-links li a {
+        padding: .25rem 0;
+    }
+
+    .navbar-links.active {
+        margin: 0 !important;
+        display: flex;
+    }
+
+    .navbar-button {
+        right: 4rem;
+    }
+
+    .navbar-button.active {
+        position: absolute;
+        top: 12px;
+    }
+}

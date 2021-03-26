@@ -4,9 +4,13 @@ import axios from "axios";
 import '../css/SubmitIdeas.css'
 
 const SubmitIdeas = () => {
+    // The current category selected by the user
     const [category, setCategory] = useState("Ideas");
+    // The text inside of the text area
     const [text, setText] = useState('');
+    // The errorMessage text
     const [errorMessage, setErrorMessage] = useState('');
+    // UseRef referencing the text area.
     const formRef = useRef();
 
     const updateCategory = (newCategory) => {
@@ -33,7 +37,9 @@ const SubmitIdeas = () => {
     return (
         <Container align="center">
             <Row>
-                <h1 id="submitTitle">Submit Ideas</h1>
+                <h1 id="submitTitle">
+                    Submit Ideas
+                </h1>
             </Row>
             <Row className="justify-content-center">
                 <Col md="auto">
@@ -57,12 +63,17 @@ const SubmitIdeas = () => {
                 </Col>
             </Row>
             <Row>
-                <h4 id="categoryTitle">Category Selected: {category}</h4>
+                <h4 id="categoryTitle">
+                    Category Selected: {category}
+                </h4>
             </Row>
             <Row>
                 <Col align="center">
-                    <Button variant="outline-light" id="submitButton" size="lg"
-                     onClick={() => submitData()} >
+                    <Button 
+                    variant="outline-light" 
+                    id="submitButton" 
+                    size="lg"
+                    onClick={() => submitData()} >
                         Submit
                     </Button>
                 </Col>

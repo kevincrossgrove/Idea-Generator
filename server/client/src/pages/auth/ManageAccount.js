@@ -10,9 +10,11 @@ const ManageAccount = () => {
     const history = useHistory();
 
     const logout = async () => {
-        await axios.get('/auth/logout');
-        await getLoggedIn();
-        history.push('/');
+        try {
+            await axios.get('/auth/logout');
+            history.push('/');
+            await getLoggedIn();
+        } catch (err)  { console.log(err); }
     }
 
     const displayDate = () => {
@@ -29,7 +31,7 @@ const ManageAccount = () => {
                 <Col align="center">
                     <p>Welcome {userData.email}!</p>
                     <p>Joined {displayDate()}</p>
-                    <Button variant="danger" onClick={logout}>
+                    <Button variant="danger" onClick={() => logout()}>
                         Logout
                     </Button>
                 </Col>

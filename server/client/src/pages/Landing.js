@@ -58,12 +58,19 @@ function Landing() {
             </Row>
             <Row>
                 <Col md={12} align="center">
-                    <GenerateButton title={wordCategory} onClickFunction={() => generateIdea()} loading={loading}
-                                    listData={listData} setListData={setListData} />
+                    <GenerateButton 
+                    title={wordCategory} 
+                    onClickFunction={() => generateIdea()} 
+                    loading={loading}       
+                    listData={listData} 
+                    setListData={setListData} 
+                    currentVisible={true} />
                 </Col>
             </Row>
             <Row>
-                <div id='result'>{idea}</div>
+                <div className='result'>
+                    <div>{idea}</div>
+                </div>
             </Row>
             <Row>
                 {reset && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}

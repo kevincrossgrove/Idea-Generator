@@ -2,14 +2,21 @@
     width: 300px;
     height: 100px;
     color: #fff;
-    background-color: rgb(11, 204, 11);
+    background-color: rgb(14, 12, 144);
     border-radius: 25px;
-    font-weight: bold;
+    font-weight: 500;
     font-size: x-large;
-    font-family: 'Julius Sans One', sans-serif;
-    text-shadow: 2px 2px 0px #000;
-    border: 2px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    text-shadow: 1px 1px 0px #000;
     position: relative;
+    transition: all linear .3s;
+    box-shadow: 
+        -5px -5px 5px 0 rgba(0, 194, 243, 0.116),
+        7px 7px 7px 0 rgba(0, 0, 0, 0.349)
+}
+
+#generateButton:hover {
+    background-color:rgb(0, 174, 255);
 }
 
 .buttonTitle {
@@ -29,7 +36,8 @@
 
 #backButton {
     position: absolute;
-    left: 310px;
+    left: 300px;
+    bottom: 25px;
 }
 
 #resetButton {

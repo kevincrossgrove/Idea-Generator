@@ -7,15 +7,13 @@ const AuthContextProvider = (props) => {
     const [userData, setUserData] = useState(undefined);
     const [loggedIn, setLoggedIn] = useState(undefined);
     
-
+    // Determine if the user is logged in, if they are acquire their data.
     const getLoggedIn = async () => {
         const isLoggedIn = await axios.get('/auth/loggedin');
         setLoggedIn(isLoggedIn.data);
-        console.log(isLoggedIn.data);
 
         const userDataResponse = await axios.get('/auth/user');
-        setUserData(userDataResponse.data)
-        console.log(userDataResponse.data);
+        setUserData(userDataResponse.data);
     }
 
     useEffect(() => {

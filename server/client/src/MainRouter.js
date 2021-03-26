@@ -24,7 +24,7 @@ const MainRouter = () => {
                 {loggedIn && <Route path="/MyButtons" component={MyButtons}/>}
                 <Route path="/SubmitIdeas" component={SubmitIdeas}/>
                 <Route path="/About" component={About}/>
-                <Route path="/ManageIdeas" component={ManageIdeas}/>
+                {loggedIn && <Route path="/ManageIdeas" component={ManageIdeas}/>}
                 {loggedIn === false && <Route path="/Register" component={Register} />}
                 {loggedIn === false && <Route path="/Login" component={Login} />}
                 {loggedIn && <Route path="/ManageAccount" component={ManageAccount} />}

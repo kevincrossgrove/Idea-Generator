@@ -2,7 +2,8 @@ import React from 'react';
 import '../css/AppButton.css';
 import { VscArrowLeft } from "react-icons/vsc";
 
-export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, back, setBack, currentVisible}) => {
+// Button that is currently being used on Landing, and MyButtons page for generation of ideas.
+export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, currentVisible}) => {
     return (
         <button id="generateButton" 
             disabled={loading}

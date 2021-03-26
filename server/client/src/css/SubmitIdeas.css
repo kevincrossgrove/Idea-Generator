@@ -23,6 +23,6 @@
 
 @media only screen and (max-width: 600px) {
     #submitTextArea {
-        width: 475px;
+        width: 375px;
     }
 }
