@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/AppButton.css';
-import { VscArrowLeft } from "react-icons/vsc";
+import { VscArrowLeft, VscCheck } from "react-icons/vsc";
+import { saveContent } from '../logic/DbLogic';
 
 // Button that is currently being used on Landing, and MyButtons page for generation of ideas.
 export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, currentVisible}) => {
@@ -44,5 +45,33 @@ export const ResetButton = ({setReset, listData, setListData}) => {
         id="resetButton">
         Start Over
         </button>
+    );
+}
+
+// Save Button that allows users to save Ideas from the landing page.
+export const SaveButton = ({userId, contentId}) => {
+    const [title, setTitle] = useState('Save');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        setTitle('Save');
+        setErrorMessage('');
+    }, [contentId]);
+    
+    return ( <>
+        <p>
+            <button
+            disabled={title === 'Saving' || title === ''}
+            onClick={() => saveContent(setTitle, setErrorMessage, userId, contentId)}
+            id="saveIdeaButton">
+            {title}
+            {title === '' && (
+                <VscCheck size='1.5em' />
+        )}
+        </button>
+        </p>
+        <p id="savingError">
+            {errorMessage}
+        </p> </>
     );
 }

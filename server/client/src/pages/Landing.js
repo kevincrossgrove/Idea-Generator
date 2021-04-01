@@ -1,15 +1,17 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
 
-import { GenerateButton, ResetButton } from '../components/AppButton';
-import { loadCategory } from '../logic/DbLogic';  
+import { GenerateButton, ResetButton, SaveButton } from '../components/AppButton';
+import { loadCategory } from '../logic/DbLogic';
+import AuthContext from '../context/AuthContextProvider';
 
 function Landing() {
+    const {userData} = useContext(AuthContext);
     const [reset, setReset] = useState(false);
     const [loading, setLoading] = useState(false);
     const [wordCategory, setCategory] = useState(() => localStorage.getItem('category') ?? 'Ideas');
-    const [ideas, setIdeas] =    useState([]);
+    const [ideas, setIdeas] = useState([]);
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
         position: -1,
@@ -28,7 +30,7 @@ function Landing() {
     // Every time the position changes, the idea will change
     useEffect(() => {
         const currentIdea = (listData.position === -1 || listData.position >= listData.length) 
-        ? "" : ideas[listData.position].idea;
+        ? "" : ideas[listData.position];
         setIdea(currentIdea);
         setReset(listData.position >= listData.length);
     }, [listData.position]);
@@ -67,11 +69,19 @@ function Landing() {
                     currentVisible={true} />
                 </Col>
             </Row>
-            <Row>
-                <div className='result'>
-                    <div>{idea}</div>
-                </div>
-            </Row>
+            {idea != '' && (
+                <>
+                <Row>
+                    <div className='result'>
+                        <div>{idea.idea}</div>
+                    </div>
+                </Row>
+                <Row>
+                    <div className='resultOptions'>
+                        <SaveButton userId={userData._id} contentId={idea._id}/>
+                    </div>
+                </Row>
+                </> )}
             <Row>
                 {reset && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}
             </Row>

@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const auth = require('../middleware/auth');
 const Idea = require('../models/idea');
+const SavedIdea = require('../models/savedIdea');
 
 // Getting all
 router.get('/', async (req, res) => {
@@ -65,6 +67,37 @@ router.delete('/:id', getIdea, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+// Saving an idea to a user's account
+router.patch('/save/content', auth, async (req, res) => {
+    try {
+        const { userId, contentId } = req.body;
+
+        // Check to see if this user already has saved ideas.
+        var existingUserData = await SavedIdea.findOne({userId: userId});
+
+        if (!existingUserData) {
+            const newUser = new SavedIdea({userId: userId, savedIdeaArray: contentId});
+            try {
+                await newUser.save();
+            } catch (err) {
+                console.log(err.message);
+            }
+            return res.status(201).json({ message: 'Successful save'});
+        }
+
+        // Don't let them save the same content twice
+        if (existingUserData.savedIdeaArray.includes(contentId)) 
+            return res.status(400).send({error: 'User already saved this'});
+
+        existingUserData.savedIdeaArray.push(contentId);
+        existingUserData.save();
+        return res.status(202).json({ message: 'Successful save'});
+
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}); 
 
 // Status 404 means that you could not find the request
 async function getIdea(req, res, next) {

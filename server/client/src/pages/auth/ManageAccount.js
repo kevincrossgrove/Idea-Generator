@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import axios from 'axios';
-import AuthContext from '../../context/AuthContextProvider'
+import AuthContext from '../../context/AuthContextProvider';
 import { useHistory } from 'react-router';
 
 const ManageAccount = () => {

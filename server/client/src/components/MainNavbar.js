@@ -9,11 +9,11 @@ const MainNavbar = () => {
     const { loggedIn } = useContext(AuthContext);
 
     const navbarLinks = document.getElementsByClassName('navbar-links')[0];
-    const navbarButton = document.getElementsByClassName('navbar-button')[0];
+    const navbar = document.getElementsByClassName('navbar')[0];
 
     const toggleMenu = () => {
         navbarLinks.classList.toggle('active');
-        navbarButton.classList.toggle('active');
+        navbar.classList.toggle('active');
     }
 
     const account = () => {

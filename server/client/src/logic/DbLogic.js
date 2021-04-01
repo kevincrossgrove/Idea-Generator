@@ -33,3 +33,21 @@ export const deleteIdea = (id, setIdeas, category) => {
 export const saveButton = (buttonTitle, content) => {
     
 }
+
+export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
+    if (!userId) return console.log('No one is logged in.');
+
+    setTitle('Saving');
+    axios.patch(`/ideas/save/content`, {userId, contentId}).then((response) => {
+        console.log(response.status, response.message);
+        setTitle('');
+    }).catch(err => {
+        if (err.response.data.error === 'User already saved this') {
+            setTitle('');
+            setErrorMessage('You have already saved this.');
+        }   
+        else {
+            console.error(err.message);
+        }
+    });
+}

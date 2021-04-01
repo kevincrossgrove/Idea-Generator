@@ -56,7 +56,6 @@ const MyButtons = () => {
         if (listData.position < listData.length) 
             setListData({...listData, position: listData.position + 1});
         
-
         setViewAll(false);
         setCurrentVisible(true);
     }
