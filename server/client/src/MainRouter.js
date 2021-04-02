@@ -11,7 +11,7 @@ import SubmitIdeas from './pages/SubmitIdeas';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import ManageAccount from './pages/auth/ManageAccount';
-import MyButtons from './pages/MyButtons';
+import MyStuff from './pages/MyStuff';
 
 const MainRouter = () => {
     const { loggedIn } = useContext(AuthContext);
@@ -21,7 +21,7 @@ const MainRouter = () => {
             <MainNavbar />
             <Switch>
                 <Route path="/" exact component={Landing}/>
-                {loggedIn && <Route path="/MyButtons" component={MyButtons}/>}
+                {loggedIn && <Route path="/MyStuff" component={MyStuff}/>}
                 <Route path="/SubmitIdeas" component={SubmitIdeas}/>
                 <Route path="/About" component={About}/>
                 {loggedIn && <Route path="/ManageIdeas" component={ManageIdeas}/>}

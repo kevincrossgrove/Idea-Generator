@@ -51,3 +51,11 @@ export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
         }
     });
 }
+
+// Load a specific user's saved content
+export const loadUserSavedContent = (setSavedContent) => {
+    axios.get('/ideas/saved/content').then(response => {
+        setSavedContent(response.data);
+    });
+}
+

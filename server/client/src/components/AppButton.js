@@ -4,7 +4,7 @@ import { VscArrowLeft, VscCheck } from "react-icons/vsc";
 import { saveContent } from '../logic/DbLogic';
 
 // Button that is currently being used on Landing, and MyButtons page for generation of ideas.
-export const GenerateButton = ({title, onClickFunction, loading, listData, setListData, currentVisible}) => {
+export const GenerateButton = ({title, onClickFunction, loading=false, listData, setListData, currentVisible}) => {
     return (
         <button id="generateButton" 
             disabled={loading}

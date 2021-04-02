@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import '../../css/MyButtons.css';
-import { saveButton } from '../../logic/MyButtonsLogic';
-import MyButton from './MyButton';
+import '../../css/MyButton.css';
+import { saveButton } from '../../logic/MyStuffLogic';
 
 const CreateButton = () => {
     const [title, setTitle] = useState('New Button');
@@ -29,10 +28,11 @@ const CreateButton = () => {
     }
 
     return (
+        <div className="content">
         <Container>
             <Row>
                 <Col align="center">
-                    <MyButton title={title} color="red"/>
+                    <button id="myButton">{title}</button>
                 </Col>
                 <Col>
                     <Form onSubmit={(e) => e.preventDefault()} >
@@ -63,6 +63,7 @@ const CreateButton = () => {
                 </Col>
             </Row>
         </Container>
+        </div>
     );
 }
 

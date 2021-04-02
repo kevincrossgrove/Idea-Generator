@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/MyButtons.css';
+import '../../css/MyStuff.css';
 
 const ContentList = ({content}) => {
     React.useEffect(() => {

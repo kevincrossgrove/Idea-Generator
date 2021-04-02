@@ -32,7 +32,7 @@ const MainNavbar = () => {
             <div className="navbar-links">
                 <ul>
                     <li><Link to='/'>Ideas</Link></li>
-                    {loggedIn && <li><Link to='/mybuttons'>My Buttons</Link></li>}
+                    {loggedIn && <li><Link to='/mystuff'>My Stuff</Link></li>}
                     <li><Link to='/submitideas'>Submit Ideas</Link></li>
                     {loggedIn && <li><Link to='/manageideas'>Manage</Link></li>}
                 </ul>

@@ -99,6 +99,23 @@ router.patch('/save/content', auth, async (req, res) => {
     }
 }); 
 
+// Getting a user's saved content
+router.get('/saved/content', auth, async (req, res) => {
+    try {
+        const data = await SavedIdea.findOne({userId: req.user});
+
+        // Get the saved ids of the ideas
+        const ids = data.savedIdeaArray;
+
+        // Query for the actual ideas using the ids we just got
+        const content = await Idea.find( {_id : { $in : ids}})
+
+        res.json(content);
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
 // Status 404 means that you could not find the request
 async function getIdea(req, res, next) {
     let idea;
