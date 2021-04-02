@@ -143,13 +143,18 @@ div.content {
   overflow-wrap: break-word;
 }
 
+.listNumber {
+  color: black;
+  font-weight: bold;
+  font-size: large;
+}
+
 /* Styles for My Buttons Preview Page */
 .previewContainer {
   margin: 1vh 2vw;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: stretch;
   flex-wrap: wrap;
 }
 
@@ -176,6 +181,7 @@ div.content {
 
 #savedContentDropdown {
   text-align: center;
+  margin: 10px 0 3vh 0;
 }
 
 #categoryDropdown {
@@ -197,7 +203,7 @@ div.content {
 .savedContent {
   background-color: rgb(56, 56, 56);
   margin: 15px 10px;
-  padding: 15px;
+  padding: 25px 30px;
   width: 400px;
   height: 125px;
   text-align: center;
@@ -220,8 +226,15 @@ div.content {
   right: 10px;
 }
 
+.deleteSaved {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  cursor: pointer;
+}
+
 @media (max-width: 700px) {
   .savedContent {
-    margin: 30px 0px;
+    margin: 5px 0px;
   }
 }

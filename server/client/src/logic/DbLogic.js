@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import axios from 'axios';
 
 export const loadCategory = (category, setIdeas, setListData, setLoading) => {
@@ -34,6 +35,7 @@ export const saveButton = (buttonTitle, content) => {
     
 }
 
+// Save content to a user's ID
 export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
     if (!userId) return console.log('No one is logged in.');
 
@@ -52,10 +54,46 @@ export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
     });
 }
 
-// Load a specific user's saved content
-export const loadUserSavedContent = (setSavedContent) => {
-    axios.get('/ideas/saved/content').then(response => {
+// Load a user's saved content
+export const LoadUserSavedContent = (setSavedContent, setCurrentContent) => {
+    const url = '/ideas/saved/content';
+
+    useEffect(() => {
+        let source = axios.CancelToken.source();
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(url, { cancelToken: source.token});
+                setCurrentContent(response.data);
+                setSavedContent(response.data);
+            } catch (err) {
+                if (axios.isCancel(err)) {
+                    console.log('Caught Cancel');
+                } else {
+                    throw err;
+                }
+            }
+        }
+        fetchData(); 
+
+        // Clean up function which cancels the Axios request if necessary. 
+        return () => source.cancel();
+    }, []);
+}
+
+// Unsave a user's content
+export const unsaveIdea = (id, setSavedContent, setUpdate, update) => {
+    axios.delete(`/ideas/saved/content/${id}`).then(response => {
+        console.log("Unsaved idea.");
         setSavedContent(response.data);
+        setUpdate(!update);
+    });
+}
+
+// Load all the idea categories
+export const loadCategoryList = (setCategories) => {
+    axios.get('/ideas/get/categories').then(response => {
+        setCategories(response.data);
     });
 }
 

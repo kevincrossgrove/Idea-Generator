@@ -16,7 +16,7 @@ const ContentList = ({content}) => {
             {keys.map((key, i) => {
                 return (
                     <div className="contentListItem" key={i}>
-                        {i+1}. {content[key].idea}
+                        <span className="listNumber">{i+1}.</span>  {content[key].idea}
                     </div>
                 );
             })}

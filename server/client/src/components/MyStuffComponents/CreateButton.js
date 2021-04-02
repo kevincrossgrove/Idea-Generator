@@ -31,10 +31,10 @@ const CreateButton = () => {
         <div className="content">
         <Container>
             <Row>
-                <Col align="center">
+                <Col lg={6} align="center">
                     <button id="myButton">{title}</button>
                 </Col>
-                <Col>
+                <Col lg={6}>
                     <Form onSubmit={(e) => e.preventDefault()} >
                         <Form.Label>Choose your button's name</Form.Label>
                         <Form.Control placeholder="New Button" ref={titleRef} onChange={(e) => {
@@ -44,13 +44,13 @@ const CreateButton = () => {
                 </Col>
             </Row>
             <Row>
-                <Col align="center" className="userIdeas">
+                <Col lg={6} align="center" className="userIdeas">
                     <h1>Added Ideas</h1>
                     {ideas.map((idea) => (
                         <h4 key={idea.id}>{idea.idea}</h4>
                     ))}
                 </Col>
-                <Col>
+                <Col lg={6}>
                     <Form onSubmit={(e) => addIdea(e)} >
                         <Form.Label>Add Content</Form.Label>
                         <Form.Control placeholder="Enter content related to your button" ref={contentRef} onChange={(e) => {

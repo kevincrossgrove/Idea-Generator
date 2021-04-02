@@ -12,10 +12,6 @@ const MyStuff = () => {
     const [myButtons, setMyButtons] = useState(false);
     const [savedContent, setSavedContent] = useState(false);
 
-    const startEditing = () => {
-
-    }
-
     return (
         <IconContext.Provider
         value={{

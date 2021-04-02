@@ -22,12 +22,12 @@ const MainNavbar = () => {
     }
 
     return (
-        <nav class="navbar">
-            <div class="brand-title">Idea Generator</div>
+        <nav className="navbar">
+            <div className="brand-title">Idea Generator</div>
             <a href="#" className="toggle-button" onClick={() => toggleMenu()}>
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
             </a>
             <div className="navbar-links">
                 <ul>

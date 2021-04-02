@@ -56,7 +56,7 @@ const Login = () => {
                                      {visibility ? invisibleEye : eye}
                                 </i>
                         </Form.Group>
-                        <text id="forgotPassword">Forgot Password?</text>
+                        <div id="forgotPassword">Forgot Password?</div>
                         <Button variant="primary" id="topButton" type="submit">
                             Login
                         </Button>

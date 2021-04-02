@@ -13,6 +13,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Getting all categories
+router.get('/get/categories', async (req, res) => {
+    try {
+        const categories = await Idea.distinct('category');
+        res.json(categories);
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
 // Get Category
 router.get('/:category', async (req, res) => {
     try {
@@ -108,11 +118,33 @@ router.get('/saved/content', auth, async (req, res) => {
         const ids = data.savedIdeaArray;
 
         // Query for the actual ideas using the ids we just got
-        const content = await Idea.find( {_id : { $in : ids}})
+        const content = await Idea.find( {_id : { $in : ids}});
 
         res.json(content);
     } catch (err) {
         console.log(err.message);
+    }
+});
+
+// Delete a saved idea for a user
+router.delete('/saved/content/:id', auth, async (req, res) => {
+    try {
+        var data = await SavedIdea.findOne({userId: req.user});
+        var ids = data.savedIdeaArray;
+
+        // Get the index of the idea that needs to be deleted
+        const deleteIndex = ids.indexOf(req.params.id);
+
+        ids.splice(deleteIndex, 1);
+        data.savedIdeaArray = ids;
+        data.save();
+
+        // Query for the actual ideas using the ids we just got
+        const content = await Idea.find( {_id : { $in : ids}});
+
+        return res.json(content);
+    } catch (err) {
+        console.log(err.response);
     }
 });
 
