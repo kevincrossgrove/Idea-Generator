@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/MyStuff.css';
 import { AiFillPlusCircle, AiFillCrown, AiFillSave } from "react-icons/ai";
 import CreateButton from '../components/MyStuffComponents/CreateButton';

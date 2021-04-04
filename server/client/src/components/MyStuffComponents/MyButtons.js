@@ -7,7 +7,7 @@ const MyButtons = () => {
     // All of this user's buttons
     const [data, setData] = useState([]);
     const [buttonSelected, setButtonSelected] = useState(false);
-    const [buttonData, setButtonData] = useState({id: undefined, name: '', color: 'red'});
+    const [buttonData, setButtonData] = useState({id: undefined, name: ''});
 
     // Load the buttons on first render
     useEffect(() => {
@@ -23,7 +23,8 @@ const MyButtons = () => {
     }
 
     return (
-        <div className="content">
+        <>
+            <div className="content">
             {!buttonSelected &&
             <Container align="center" id="myButtonsContainer">
                 <h1>Select a button</h1>
@@ -36,11 +37,13 @@ const MyButtons = () => {
                         );
                     })}
                 </div>
-            </Container>}
-            {buttonSelected &&
-                <MyButton buttonData={buttonData} setButtonSelected={setButtonSelected} />
+            </Container>
             }
-        </div>
+            </div>
+            {buttonSelected &&
+                <MyButton buttonData={buttonData} setButtonSelected={setButtonSelected} setData={setData} />
+            }
+        </>
     );
 }
 

@@ -53,10 +53,10 @@ router.post('/', async (req, res) => {
 
 // Updating one
 router.patch('/:id', getIdea, async (req, res) => {
-    if (req.body.idea != null) {
+    if (req.body.idea !== null) {
         res.idea.idea = req.body.idea;
     }
-    if (req.body.category != null) {
+    if (req.body.category !== null) {
         res.idea.category = req.body.category;
     }
 

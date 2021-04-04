@@ -69,7 +69,7 @@ function Landing() {
                     currentVisible={true} />
                 </Col>
             </Row>
-            {idea != '' && (
+            {idea !== '' && (
                 <>
                 <Row>
                     <div className='result'>

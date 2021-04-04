@@ -1,19 +1,26 @@
 import axios from 'axios';
 import { randomShuffle } from './DbLogic';
 
-export const saveButton = async (buttonName, content, color, setButtonName, setButtonContent) => {
-    await axios.post('/button', {
+export const saveButton = (setButtonId, buttonName, content) => {
+    axios.post('/button', {
         buttonName: buttonName,
-        contentArray: content,
-        color: color
+        contentArray: content
     })
-    .then((response) => {
-        console.log(response);
-        setButtonName('New Button');
-        setButtonContent([]);
+    .then(response => {
+        console.log(response.data);
+        setButtonId(response.data._id);
       }, (error) => {
         console.log(error);
       });
+}
+
+export const updateButton = (buttonId, buttonName, content) => {
+    axios.patch(`/button/${buttonId}`, {
+        buttonName: buttonName,
+        contentArray: content
+    }).then(response => {
+        console.log(response.data);
+    })
 }
 
 // Load the buttons, but also shuffle the content.
@@ -24,6 +31,13 @@ export const loadButtons = async (setData) => {
         })
         setData(response.data);
     });
+}
+
+// Load an individual button
+export const loadSingleButton = (buttonId) => {
+    return axios.get(`/button/${buttonId}`).then(response => {
+        return response.data;
+    }).catch(err => console.log(err.message));
 }
 
 // Delete a button

@@ -4,10 +4,13 @@ import { GenerateButton } from '../../components/AppButton';
 import ContentList from '../MyStuffComponents/ContentList';
 import '../../css/MyButton.css'
 import { Container } from 'react-bootstrap';
+import CreateButton from './CreateButton';
 
-const MyButton = ({buttonData, setButtonSelected}) => {
+const MyButton = ({buttonData, setButtonSelected, setData}) => {
     const title = buttonData.buttonName;
     const content = buttonData.contentArray;
+
+    const [editing, setEditing] = useState(false);
 
     // The individual content currently displaying from content list
     const [currentContent, setCurrentContent] = useState('');
@@ -40,11 +43,15 @@ const MyButton = ({buttonData, setButtonSelected}) => {
         setCurrentVisible(true);
     }
 
-    const startEditing = () => {
-        console.log(buttonData._id);
-    }
-
     return (
+        <>
+        {editing ? <CreateButton 
+                    isEditing={true} 
+                    editButtonId={buttonData._id} 
+                    contentArray={buttonData.contentArray}
+                    buttonTitle={buttonData.buttonName} 
+                    setEditing= {setEditing} /> :
+        <div className="content">
         <Container>
             <button id="returnButton" onClick={() => setButtonSelected(false)}>Back to Buttons</button>
             <Container align="center">
@@ -55,7 +62,7 @@ const MyButton = ({buttonData, setButtonSelected}) => {
                 setListData={setListData}
                 currentVisible={currentVisible} />
                 <p>
-                <button onClick={() => startEditing()} id="editButton">
+                <button onClick={() => setEditing(true)} id="editButton">
                     Edit
                 </button>
                 <button onClick={() => setAllContent()} id="viewAllButton">
@@ -69,6 +76,8 @@ const MyButton = ({buttonData, setButtonSelected}) => {
                 {viewAll && <ContentList content={content} />}
             </Container>
         </Container>
+        </div>}
+        </>
     );
 }
 
