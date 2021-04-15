@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import axios from 'axios';
 import AuthContext from '../../context/AuthContextProvider';
 import { useHistory } from 'react-router';
+import MainNavbar from '../../components/MainNavbar';
 
 const ManageAccount = () => {
     const {getLoggedIn} = useContext(AuthContext);
@@ -26,6 +27,8 @@ const ManageAccount = () => {
     }
 
     return (
+        <>
+        <MainNavbar />
         <Container>
             <Row>
                 <Col align="center">
@@ -37,6 +40,7 @@ const ManageAccount = () => {
                 </Col>
             </Row>
         </Container>
+        </>
     );
 }
 

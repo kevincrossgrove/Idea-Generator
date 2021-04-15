@@ -17,9 +17,10 @@ const MainRouter = () => {
     const { loggedIn, userData } = useContext(AuthContext);
     console.log(userData);
 
+
+
     return (
         <Router>
-            <MainNavbar />
             <Switch>
                 <Route path="/" exact component={Landing}/>
                 {loggedIn && <Route path="/MyStuff" component={MyStuff}/>}

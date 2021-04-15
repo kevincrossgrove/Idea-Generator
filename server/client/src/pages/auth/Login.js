@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import AuthContext from '../../context/AuthContextProvider';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import '../../css/Auth.css';
+import MainNavbar from '../../components/MainNavbar';
 
 const eye = <AiFillEye size={25} />
 const invisibleEye = <AiFillEyeInvisible size={25} />
@@ -33,6 +34,8 @@ const Login = () => {
     }
 
     return (
+        <>
+        <MainNavbar />
         <Container align="center">
             <Row className="justify-content-center">
                 <Col md="auto" className="authContainer">
@@ -67,6 +70,7 @@ const Login = () => {
                 </Col>
             </Row>
         </Container>
+        </>
     );
 }
 

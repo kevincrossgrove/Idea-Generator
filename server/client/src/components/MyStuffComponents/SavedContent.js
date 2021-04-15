@@ -3,6 +3,7 @@ import { BsFillXSquareFill } from "react-icons/bs";
 
 import '../../css/MyStuff.css';
 import { LoadUserSavedContent, unsaveIdea } from '../../logic/DbLogic';
+import MainNavbar from '../MainNavbar';
 
 const SavedContent = () => {
     const [savedContent, setSavedContent] = useState([]);
@@ -52,6 +53,8 @@ const SavedContent = () => {
     }
 
     return (
+        <>
+        <MainNavbar logo={false} />
         <div className="content scrollable">
             <div id="savedContentTitle">
                 <h5>Saved Content</h5>
@@ -79,7 +82,8 @@ const SavedContent = () => {
             })}
             </div>
         </div>
-    )
+        </>
+    );
 }
 
 export default SavedContent;

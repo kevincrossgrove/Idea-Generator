@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Container } from 'react-bootstrap';
 import { loadButtons } from '../../logic/MyStuffLogic';
+import MainNavbar from '../MainNavbar';
 import MyButton from './MyButton';
 
 const MyButtons = () => {
@@ -24,6 +25,7 @@ const MyButtons = () => {
 
     return (
         <>
+            <MainNavbar logo={false} />
             <div className="content">
             {!buttonSelected &&
             <Container align="center" id="myButtonsContainer">

@@ -238,3 +238,8 @@ div.content {
     margin: 5px 0px;
   }
 }
+
+/* My Stuff Landing CSS */
+.myStuffLanding h1 {
+  text-align: center;
+}

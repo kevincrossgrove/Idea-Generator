@@ -5,6 +5,7 @@ import ContentList from '../MyStuffComponents/ContentList';
 import '../../css/MyButton.css'
 import { Container } from 'react-bootstrap';
 import CreateButton from './CreateButton';
+import MainNavbar from '../MainNavbar';
 
 const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
     const title = buttonData.buttonName;

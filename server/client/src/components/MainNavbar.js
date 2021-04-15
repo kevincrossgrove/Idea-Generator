@@ -22,14 +22,14 @@ const MainNavbar = ({logo = true}) => {
     }
 
     return (
-        <nav className="navbar">
+        <nav className={!logo ? "navbar nav-sidebar" : "navbar"}>
             {logo && <div className="brand-title">Idea Generator</div>}
             <a href="#" className="toggle-button" onClick={() => toggleMenu()}>
                 <span className="bar"></span>
                 <span className="bar"></span>
                 <span className="bar"></span>
             </a>
-            <div className="navbar-links">
+            <div className={!logo ? "navbar-links links-sidebar" : "navbar-links"}>
                 <ul>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/'>Ideas</Link></li>

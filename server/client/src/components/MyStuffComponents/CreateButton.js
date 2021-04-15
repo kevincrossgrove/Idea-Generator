@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import '../../css/MyButton.css';
-import { loadSingleButton, saveButton, updateButton } from '../../logic/MyStuffLogic';
+import { saveButton, updateButton } from '../../logic/MyStuffLogic';
 import { BsFillXSquareFill } from "react-icons/bs";
-import Ideas from '../Ideas';
+import MainNavbar from '../MainNavbar';
 
 const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, setListData, setEditing = null}) => {
     const [title, setTitle] = useState('New Button');
@@ -90,59 +90,62 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
     }
 
     return (
-        <div className="content">
-        <Container>
-            <Row>
-                <Col lg={6} align="center">
-                    <button id="myButton">{title}</button>
-                </Col>
-                <Col lg={6}>
-                    <Form onSubmit={(e) => e.preventDefault()} >
-                        <Form.Label>Choose your button's name</Form.Label>
-                        <Form.Control placeholder="New Button" ref={titleRef} onChange={(e) => {
-                            setTitle(e.currentTarget.value);
-                        }}/>
-                    </Form>
-                </Col>
-            </Row>
-            <Row id="bottomRow">
-                <Col lg={6} align="center" className="userIdeas">
-                    <h1>Added Ideas</h1>
-                    {ideas.map((idea) => (
-                        <div key={idea.id}
-                        className="addedIdeaContainer" 
-                        onMouseEnter={() => hover(true, idea.id)}
-                        onMouseLeave={() => hover(false, '')}>
-                            <h5>{idea.idea}</h5>
-                            {deleteHover && hoverId == idea.id && 
-                            <BsFillXSquareFill 
-                            className="addedIdeaIcon" 
-                            onClick={() => removeItem(idea.id)}/>}
+        <>
+            <MainNavbar logo={false} />
+            <div className="content">
+            <Container>
+                <Row>
+                    <Col lg={6} align="center">
+                        <button id="myButton">{title}</button>
+                    </Col>
+                    <Col lg={6}>
+                        <Form onSubmit={(e) => e.preventDefault()} >
+                            <Form.Label>Choose your button's name</Form.Label>
+                            <Form.Control placeholder="New Button" ref={titleRef} onChange={(e) => {
+                                setTitle(e.currentTarget.value);
+                            }}/>
+                        </Form>
+                    </Col>
+                </Row>
+                <Row id="bottomRow">
+                    <Col lg={6} align="center" className="userIdeas">
+                        <h1>Added Ideas</h1>
+                        {ideas.map((idea) => (
+                            <div key={idea.id}
+                            className="addedIdeaContainer" 
+                            onMouseEnter={() => hover(true, idea.id)}
+                            onMouseLeave={() => hover(false, '')}>
+                                <h5>{idea.idea}</h5>
+                                {deleteHover && hoverId == idea.id && 
+                                <BsFillXSquareFill 
+                                className="addedIdeaIcon" 
+                                onClick={() => removeItem(idea.id)}/>}
+                            </div>
+                        ))}
+                    </Col>
+                    <Col lg={6}>
+                        <Form >
+                            <Form.Label>Add Content</Form.Label>
+                            <Form.Control id="contentForm"
+                            placeholder="Enter content related to your button" 
+                            as="textarea" 
+                            ref={contentRef} 
+                            rows={3} 
+                            onKeyDown={(e) => handleKeyPress(e)}
+                            onChange={(e) => {
+                                setCurrentIdea(e.currentTarget.value);
+                            }}/>
+                        </Form>
+                        <div id="createButtonsContainer">
+                            <button className="createButton add" onClick={() => addContent()}>Add Content</button>
+                            <button className="createButton save" onClick={() => save()}>Save</button>
+                            <button className="createButton finish" onClick={() => finish()}>Finish</button>
                         </div>
-                    ))}
-                </Col>
-                <Col lg={6}>
-                    <Form >
-                        <Form.Label>Add Content</Form.Label>
-                        <Form.Control id="contentForm"
-                        placeholder="Enter content related to your button" 
-                        as="textarea" 
-                        ref={contentRef} 
-                        rows={3} 
-                        onKeyDown={(e) => handleKeyPress(e)}
-                        onChange={(e) => {
-                            setCurrentIdea(e.currentTarget.value);
-                        }}/>
-                    </Form>
-                    <div id="createButtonsContainer">
-                        <button className="createButton add" onClick={() => addContent()}>Add Content</button>
-                        <button className="createButton save" onClick={() => save()}>Save</button>
-                        <button className="createButton finish" onClick={() => finish()}>Finish</button>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-        </div>
+                    </Col>
+                </Row>
+            </Container>
+            </div>
+        </>
     );
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Button, ButtonGroup, Container, Form, Row, Col } from 'react-bootstrap'
 import axios from "axios";
 import '../css/SubmitIdeas.css'
+import MainNavbar from '../components/MainNavbar';
 
 const SubmitIdeas = () => {
     // The current category selected by the user
@@ -35,6 +36,8 @@ const SubmitIdeas = () => {
     }
 
     return (
+        <>
+        <MainNavbar />
         <Container align="center">
             <Row>
                 <h1 id="submitTitle">
@@ -82,6 +85,7 @@ const SubmitIdeas = () => {
                 <h4 id="errorMessage">{errorMessage}</h4>
             </Row>
         </Container>
+        </>
     )
 }
 

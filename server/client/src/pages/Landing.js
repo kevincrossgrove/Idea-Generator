@@ -5,6 +5,7 @@ import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
 import { GenerateButton, ResetButton, SaveButton } from '../components/AppButton';
 import { loadCategory } from '../logic/DbLogic';
 import AuthContext from '../context/AuthContextProvider';
+import MainNavbar from '../components/MainNavbar';
 
 function Landing() {
     const {userData} = useContext(AuthContext);
@@ -49,6 +50,7 @@ function Landing() {
 
     return (
         <>
+        <MainNavbar />
         <Container>
             <Row>
                 <ButtonGroup aria-label="Basic example">

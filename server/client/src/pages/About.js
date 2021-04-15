@@ -1,8 +1,11 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
+import MainNavbar from '../components/MainNavbar';
 
 function About() {
     return (
+        <>
+        <MainNavbar />
         <Container>
             <Row align="center">
                 <Col lg={8}>
@@ -13,6 +16,7 @@ function About() {
                 </Col>
             </Row>
         </Container>
+        </>
     )
 }
 
