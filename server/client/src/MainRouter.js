@@ -14,7 +14,8 @@ import ManageAccount from './pages/auth/ManageAccount';
 import MyStuff from './pages/MyStuff';
 
 const MainRouter = () => {
-    const { loggedIn } = useContext(AuthContext);
+    const { loggedIn, userData } = useContext(AuthContext);
+    console.log(userData);
 
     return (
         <Router>

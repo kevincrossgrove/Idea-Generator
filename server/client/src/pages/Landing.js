@@ -78,7 +78,7 @@ function Landing() {
                 </Row>
                 <Row>
                     <div className='resultOptions'>
-                        <SaveButton userId={userData._id} contentId={idea._id}/>
+                        {userData !== null && <SaveButton userId={userData._id} contentId={idea._id}/>}
                     </div>
                 </Row>
                 </> )}

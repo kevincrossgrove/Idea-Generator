@@ -1,11 +1,16 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function About() {
     return (
         <Container>
             <Row align="center">
-                <h1>About Page</h1>
+                <Col lg={8}>
+                    <h1>Where ideas grow</h1>
+                </Col>
+                <Col lg={4}>
+                    <h1>Column 2</h1>
+                </Col>
             </Row>
         </Container>
     )

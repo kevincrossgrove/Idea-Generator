@@ -5,7 +5,7 @@ import { loadSingleButton, saveButton, updateButton } from '../../logic/MyStuffL
 import { BsFillXSquareFill } from "react-icons/bs";
 import Ideas from '../Ideas';
 
-const CreateButton = ({isEditing = false, editButtonId = null, contentArray = null, buttonTitle= null, setEditing = null}) => {
+const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, setListData, setEditing = null}) => {
     const [title, setTitle] = useState('New Button');
     const [ideas, setIdeas] = useState([]);
     const [buttonId, setButtonId] = useState(null);
@@ -17,10 +17,10 @@ const CreateButton = ({isEditing = false, editButtonId = null, contentArray = nu
 
     useEffect(() => {
         const loadButton = () => {
-            setButtonId(editButtonId);
-            setTitle(buttonTitle);
-            setIdeas(contentArray);
-            titleRef.current.value = buttonTitle;
+            setButtonId(buttonData._id);
+            setTitle(buttonData.buttonName);
+            setIdeas(buttonData.contentArray);
+            titleRef.current.value = buttonData.buttonName;
         }
 
         if (isEditing) loadButton();
@@ -55,6 +55,13 @@ const CreateButton = ({isEditing = false, editButtonId = null, contentArray = nu
     }
 
     const save = async () => {
+        if (isEditing) {
+            buttonData.contentArray = ideas;
+            buttonData.buttonName = title;
+            setButtonData(buttonData);
+            setListData({...listData, length: ideas.length});
+        }
+
         if (buttonId) 
             return await updateButton(buttonId, title, ideas);
         await saveButton(setButtonId, title, ideas);

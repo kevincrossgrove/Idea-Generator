@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import AuthContext from '../context/AuthContextProvider';
 import '../css/MainNavbar.css';
 
-const MainNavbar = () => {
+const MainNavbar = ({logo = true}) => {
     const history = useHistory();
     const { loggedIn } = useContext(AuthContext);
 
@@ -23,7 +23,7 @@ const MainNavbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="brand-title">Idea Generator</div>
+            {logo && <div className="brand-title">Idea Generator</div>}
             <a href="#" className="toggle-button" onClick={() => toggleMenu()}>
                 <span className="bar"></span>
                 <span className="bar"></span>
@@ -31,10 +31,11 @@ const MainNavbar = () => {
             </a>
             <div className="navbar-links">
                 <ul>
+                    <li><Link to='/about'>About</Link></li>
                     <li><Link to='/'>Ideas</Link></li>
                     {loggedIn && <li><Link to='/mystuff'>My Stuff</Link></li>}
                     <li><Link to='/submitideas'>Submit Ideas</Link></li>
-                    {loggedIn && <li><Link to='/manageideas'>Manage</Link></li>}
+                    {/* {loggedIn && <li><Link to='/manageideas'>Manage</Link></li>} */}
                 </ul>
             </div>
             <div className="navbar-button" onClick={() => account()}>

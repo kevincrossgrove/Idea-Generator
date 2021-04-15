@@ -41,7 +41,7 @@ const MyButtons = () => {
             }
             </div>
             {buttonSelected &&
-                <MyButton buttonData={buttonData} setButtonSelected={setButtonSelected} setData={setData} />
+                <MyButton buttonData={buttonData} setButtonData={setButtonData} setButtonSelected={setButtonSelected} />
             }
         </>
     );
