@@ -91,7 +91,7 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
 
     return (
         <>
-            <MainNavbar logo={false} />
+            {!isEditing && <MainNavbar logo={false} />}
             <div className="content">
             <Container>
                 <Row>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/MyStuff.css';
-import { AiFillPlusCircle, AiFillCrown, AiFillSave } from "react-icons/ai";
+import { AiFillPlusCircle, AiFillCrown, AiFillSave, AiFillHome } from "react-icons/ai";
 import MyStuffLanding from '../components/MyStuffComponents/MyStuffLanding';
 import CreateButton from '../components/MyStuffComponents/CreateButton';
 import { IconContext } from 'react-icons/lib';
@@ -18,7 +18,7 @@ const MyStuff = () => {
     return (
         <IconContext.Provider
         value={{
-            style: { marginBottom: 3, marginLeft: 8 },
+            style: { marginBottom: 3, marginLeft: 0, marginRight: 8 },
             size: 25,
             className: "sideIcon"
           }}>
@@ -26,13 +26,22 @@ const MyStuff = () => {
             <div className="sidebar">
                 <div className="brand-title for-sidebar">Idea Generator</div>
                 <div className="sidebar-item" onClick={() => {
+                    setStartingPage(true);
+                    setSavedContent(false);
+                    setCreateButton(false); 
+                    setMyButtons(false);
+                }}>
+                    <AiFillHome />
+                    Home
+                </div>
+                <div className="sidebar-item" onClick={() => {
                     setStartingPage(false);
                     setSavedContent(true);
                     setCreateButton(false); 
                     setMyButtons(false);
                 }}>
-                    Saved Content
                     <AiFillSave />
+                    Saved Content
                 </div>
                 <div className="sidebar-item" onClick={() => {
                     setStartingPage(false);
@@ -40,8 +49,8 @@ const MyStuff = () => {
                     setCreateButton(true); 
                     setMyButtons(false);
                 }}>
-                    Create Button
                     <AiFillPlusCircle />
+                    Create Button
                 </div>
                 <div className="sidebar-item" onClick={() => {
                     setStartingPage(false);
@@ -49,13 +58,13 @@ const MyStuff = () => {
                     setCreateButton(false); 
                     setMyButtons(true);
                 }}>
-                    My Buttons
                     <AiFillCrown />
+                    My Buttons
                 </div>
             </div>
 
             {/* The components that will show when sidebar option is selected */}
-            {startingPage && <MyStuffLanding />}
+            {startingPage && <MyStuffLanding setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
             {savedContent && <SavedContent /> }
             {createButton && <CreateButton /> }
             {myButtons && <MyButtons /> }       

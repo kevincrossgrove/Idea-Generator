@@ -22,6 +22,7 @@ body {
   display: block;
   color: white;
   padding: 16px;
+  background-color: #0019a7;
   text-decoration: none;
   font-size: 150%;
   cursor: pointer;
@@ -135,7 +136,7 @@ div.content {
 
 .contentListItem {
   border: 2px solid black;
-  background: linear-gradient(to right, rgb(5, 134, 255), rgb(4, 58, 207)); 
+  background: linear-gradient(to right, rgb(4, 58, 207), rgb(5, 134, 255) ); 
   text-align: left;
   padding: 10px 17px 10px 17px;
   margin-bottom: 5px;
@@ -240,6 +241,50 @@ div.content {
 }
 
 /* My Stuff Landing CSS */
-.myStuffLanding h1 {
+#stuffTitle {
+  margin-top: 25px;
   text-align: center;
+}
+
+.stuffSubtitle {
+  background-color: rgb(0, 81, 95);
+  border-radius: 5px 5px 0px 0px;
+  padding: 15px;
+}
+
+.stuffContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.stuffContainer > * {
+  background-color: rgb(230, 207, 207);
+  height: 375px;
+  width: 400px;
+  text-align: center;
+}
+
+.stuffCol {
+  position: relative;
+  margin: 30px 3px 0 3px;
+  border-radius: 5px 5px 8px 8px;
+}
+
+.stuffCol button {
+  border: none;
+  border-radius: 10px;
+  background-color:black;
+  color: white;
+  padding: 10px;
+  width: 200px;
+}
+
+.stuffDescription {
+  height: 170px;
+  margin: 40px;
+  color: black;
+  font-size: larger;
 }

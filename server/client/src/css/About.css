@@ -1,0 +1,39 @@
+#aboutLeftColumn {
+    margin-top: 5vh;
+}
+
+#aboutRightColumn {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+#aboutRightColumn button {
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    background-color: transparent;
+    transition: all 1s ease-in;
+}
+
+#aboutRightColumn button:hover {
+    background-color: rgb(0, 17, 172);
+}
+
+.description {
+    font-size: larger;
+    margin: 30px 60px 60px 60px;
+}
+
+.mainWords {
+    color: rgb(255, 166, 0);
+    font-weight: bold;
+    /* text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;  */
+}

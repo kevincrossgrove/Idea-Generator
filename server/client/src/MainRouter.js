@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MainNavbar from './components/MainNavbar';
 import AuthContext from './context/AuthContextProvider';
 
 // Page imports
@@ -16,8 +15,6 @@ import MyStuff from './pages/MyStuff';
 const MainRouter = () => {
     const { loggedIn, userData } = useContext(AuthContext);
     console.log(userData);
-
-
 
     return (
         <Router>
