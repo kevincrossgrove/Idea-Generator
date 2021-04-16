@@ -4,6 +4,7 @@ import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
 import '../css/ManageIdeas.css'
 import Ideas from '../components/Ideas';
 import { loadCategoryToManage } from '../logic/DbLogic';
+import MainNavbar from '../components/MainNavbar';
 
 function ManageIdeas() {
     const [ideas, setIdeas] = useState([]);
@@ -19,6 +20,8 @@ function ManageIdeas() {
     }, []);
 
     return (
+        <>
+        <MainNavbar />
         <Container>
             <Row>
                 <h1 id='manageTitle'>Manage Ideas</h1>
@@ -38,7 +41,8 @@ function ManageIdeas() {
                 <Ideas ideas={ideas} manage={true} setIdeas={setIdeas} category={category}/>
             </Row>
         </Container>
-    )
+        </>
+    );
 }
 
 export default ManageIdeas;

@@ -6,7 +6,7 @@ import '../css/MainNavbar.css';
 
 const MainNavbar = ({logo = true}) => {
     const history = useHistory();
-    const { loggedIn } = useContext(AuthContext);
+    const { loggedIn, userData } = useContext(AuthContext);
 
     const navbarLinks = document.getElementsByClassName('navbar-links')[0];
     const navbar = document.getElementsByClassName('navbar')[0];
@@ -35,7 +35,7 @@ const MainNavbar = ({logo = true}) => {
                     <li><Link to='/'>Ideas</Link></li>
                     {loggedIn && <li><Link to='/mystuff'>My Stuff</Link></li>}
                     <li><Link to='/submitideas'>Submit Ideas</Link></li>
-                    {/* {loggedIn && <li><Link to='/manageideas'>Manage</Link></li>} */}
+                    {loggedIn && userData?.admin === true && <li><Link to='/manageideas'>Manage</Link></li>}
                 </ul>
             </div>
             <div className="navbar-button" onClick={() => account()}>

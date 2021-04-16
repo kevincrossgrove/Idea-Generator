@@ -9,11 +9,11 @@ const Idea = ({idea, manage, setIdeas, category}) => {
             <h4>{idea.idea}
             {manage && 
             <BsFillXSquareFill 
-            style={{ color: 'red', cursor: 'pointer'}}
+            style={{ color: 'red', cursor: 'pointer', marginLeft: 10}}
             onClick={() => deleteIdea(idea._id, setIdeas, category)} />}
             </h4>
         </Row>
     )
 }
 
-export default Idea
+export default Idea;

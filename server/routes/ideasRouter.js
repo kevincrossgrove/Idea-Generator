@@ -69,7 +69,7 @@ router.patch('/:id', getIdea, async (req, res) => {
 });
 
 // Deleting one
-router.delete('/:id', getIdea, async (req, res) => {
+router.delete('/:id', auth, adminAuth, getIdea, async (req, res) => {
     try {
         await res.idea.remove()
         res.json({ message: `Deleted Idea: ${res.idea.idea}`});
@@ -161,6 +161,17 @@ async function getIdea(req, res, next) {
     }
 
     res.idea = idea;
+    next();
+}
+
+// Middleware that ensures that the user is admin before they complete the next task
+function adminAuth(req, res, next) {
+    try {
+        if (req.user !== process.env.ADMIN) 
+            return res.status(401).json({errorMessage: "Unauthorized"});
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
     next();
 }
 

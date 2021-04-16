@@ -16,7 +16,7 @@
     border-radius: 10px;
     color: white;
     background-color: transparent;
-    transition: all 1s ease-in;
+    transition: all .3s ease-in;
 }
 
 #aboutRightColumn button:hover {
@@ -31,9 +31,5 @@
 .mainWords {
     color: rgb(255, 166, 0);
     font-weight: bold;
-    /* text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff;  */
+    cursor: pointer;
 }

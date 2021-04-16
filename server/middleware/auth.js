@@ -18,7 +18,7 @@ const auth = (req, res, next) => {
         // Exit out of the auth middleware, continue executing this endpoint
         next();
     } catch(err) {
-        console.log(err);
+        console.log(err.message);
         res.status(401).json({errorMessage: "Unauthorized"});
     }
 }

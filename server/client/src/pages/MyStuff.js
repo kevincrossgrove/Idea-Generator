@@ -6,6 +6,7 @@ import CreateButton from '../components/MyStuffComponents/CreateButton';
 import { IconContext } from 'react-icons/lib';
 import SavedContent from '../components/MyStuffComponents/SavedContent';
 import MyButtons from '../components/MyStuffComponents/MyButtons';
+import MobileSidebar from '../components/MyStuffComponents/MobileSidebar';
 
 
 const MyStuff = () => {
@@ -67,7 +68,8 @@ const MyStuff = () => {
             {startingPage && <MyStuffLanding setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
             {savedContent && <SavedContent /> }
             {createButton && <CreateButton /> }
-            {myButtons && <MyButtons /> }       
+            {myButtons && <MyButtons /> }
+            <MobileSidebar setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons}/>     
         </div>
         </IconContext.Provider>
     );

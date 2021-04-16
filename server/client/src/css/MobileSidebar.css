@@ -1,0 +1,26 @@
+.sidebar-mobile {
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0019a7;
+    padding: 25px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.mobile-item {
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .sidebar-mobile {
+        display: flex;
+      }
+  
+    .mobile-item {
+        display: flex;
+    }
+}

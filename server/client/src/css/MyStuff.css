@@ -15,7 +15,7 @@ body {
     position: fixed;
     height: 100%;
     overflow: auto;
-  }
+}
   
 /* Sidebar links */
 .sidebar-item {
@@ -65,6 +65,7 @@ div.content {
     width: 100%;
     height: auto;
     position: relative;
+    display: none;
   }
   .sidebar a {float: left;}
   div.content {margin-left: 0;}
@@ -80,6 +81,7 @@ div.content {
 
 #myButtonsContainer{
   margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 .contentContainer {
@@ -199,6 +201,7 @@ div.content {
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-bottom: 100px;
 }
 
 .savedContent {

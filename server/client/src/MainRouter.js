@@ -23,7 +23,7 @@ const MainRouter = () => {
                 {loggedIn && <Route path="/MyStuff" component={MyStuff}/>}
                 <Route path="/SubmitIdeas" component={SubmitIdeas}/>
                 <Route path="/About" component={About}/>
-                {loggedIn && <Route path="/ManageIdeas" component={ManageIdeas}/>}
+                {loggedIn && userData?.admin === true && <Route path="/ManageIdeas" component={ManageIdeas}/>}
                 {loggedIn === false && <Route path="/Register" component={Register} />}
                 {loggedIn === false && <Route path="/Login" component={Login} />}
                 {loggedIn && <Route path="/ManageAccount" component={ManageAccount} />}
