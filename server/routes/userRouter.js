@@ -111,7 +111,7 @@ router.get("/user", async (req, res) => {
         const userData = await User.findOne({_id: decoded.user});
         res.send(userData);
     } catch(err) {
-        res.status(401).json({errorMessage: "Unauthorized"});
+        res.send('No user data');
     }
 });
 

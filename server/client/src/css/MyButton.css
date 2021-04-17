@@ -109,3 +109,7 @@
     -3px -3px 3px 0 rgba(255, 255, 255, 0.164),
     3px 3px 3px 0 rgba(0, 0, 0, 0.349)
 }
+
+.otherButtonsContainer {
+    margin-top: 10px;
+}

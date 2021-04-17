@@ -12,6 +12,8 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
     const [currentIdea, setCurrentIdea] = useState('');
     const [deleteHover, setDeleteHover] = useState(false);
     const [hoverId, setHoverId] = useState('');
+    const [saveButtonText, setSaveButtonText] = useState('Save');
+    const [displayMessage, setDisplayMessage] = useState('');
     const titleRef = useRef();
     const contentRef = useRef();
 
@@ -24,7 +26,6 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
         }
 
         if (isEditing) loadButton();
-
     }, []);
 
     // If the user deletes their button title, reset the value.
@@ -55,6 +56,7 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
     }
 
     const save = async () => {
+        setSaveButtonText('Saving');
         if (isEditing) {
             buttonData.contentArray = ideas;
             buttonData.buttonName = title;
@@ -62,9 +64,14 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
             setListData({...listData, length: ideas.length});
         }
 
-        if (buttonId) 
-            return await updateButton(buttonId, title, ideas);
-        await saveButton(setButtonId, title, ideas);
+        if (buttonId) {
+            await updateButton(buttonId, title, ideas);
+        } else {
+            await saveButton(setButtonId, title, ideas);
+        }
+        setDisplayMessage('Save completed');
+        setTimeout(() => setSaveButtonText('Save'), 500);
+        setTimeout(() => setDisplayMessage(''), 2000);
     }
 
     const finish = async () => {
@@ -138,8 +145,12 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
                         </Form>
                         <div id="createButtonsContainer">
                             <button className="createButton add" onClick={() => addContent()}>Add Content</button>
-                            <button className="createButton save" onClick={() => save()}>Save</button>
+                            <button 
+                            className="createButton save"
+                            disabled={saveButtonText === 'Saving'}
+                            onClick={() => save()}>{saveButtonText}</button>
                             <button className="createButton finish" onClick={() => finish()}>Finish</button>
+                            <span>{displayMessage}</span>
                         </div>
                     </Col>
                 </Row>

@@ -13,14 +13,17 @@ const AuthContextProvider = (props) => {
         setLoggedIn(isLoggedIn.data);
 
         const userDataResponse = await axios.get('/auth/user');
-        setUserData(userDataResponse.data);
+
+        // Set user data to null if the responses yields no data
+        if (userDataResponse.data === 'No user data') setUserData(null);
+        else setUserData(userDataResponse.data);
     }
 
     useEffect(() => {
         getLoggedIn();
     }, []);
 
-    return <AuthContext.Provider value={{loggedIn, getLoggedIn, userData}}>
+    return <AuthContext.Provider value={{loggedIn, getLoggedIn, userData, setUserData}}>
         {props.children}
     </AuthContext.Provider>
 }

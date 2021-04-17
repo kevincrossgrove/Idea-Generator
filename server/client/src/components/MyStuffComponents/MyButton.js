@@ -5,14 +5,12 @@ import ContentList from '../MyStuffComponents/ContentList';
 import '../../css/MyButton.css'
 import { Container } from 'react-bootstrap';
 import CreateButton from './CreateButton';
-import MainNavbar from '../MainNavbar';
 
 const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
     const title = buttonData.buttonName;
     const content = buttonData.contentArray;
 
     const [editing, setEditing] = useState(false);
-
     const [reset, setReset] = useState(false);
 
     // The individual content currently displaying from content list
@@ -21,7 +19,7 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
     // Keeps track of if the current Content should be visible or not.
     const [currentVisible, setCurrentVisible] = useState(true);
 
-    // UseState that helps skeeps track of what content is being displayed
+    // UseState that helps keep track of what content is being displayed
     const [listData, setListData] = useState({ position: -1, length: content.length ?? 0 });
 
     // Keeps trach when the buttons entire content should be displayed or not
@@ -71,12 +69,14 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
                 setListData={setListData}
                 currentVisible={currentVisible} />
                 <p>
-                <button onClick={() => setEditing(true)} id="editButton">
-                    Edit
-                </button>
-                <button onClick={() => setAllContent()} id="viewAllButton">
-                    {viewAll ? "Close": "View"} All Content
-                </button>
+                <div className="otherButtonsContainer">
+                    <button onClick={() => setEditing(true)} id="editButton">
+                        Edit
+                    </button>
+                    <button onClick={() => setAllContent()} id="viewAllButton">
+                        {viewAll ? "Close": "View"} All Content
+                    </button>
+                </div>
                 </p>
                 {listData.position > -1 && listData.position < listData.length && !viewAll && <div className="result">
                     <h5 id="currentContent">{currentContent}</h5>

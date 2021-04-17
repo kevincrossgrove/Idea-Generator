@@ -233,7 +233,7 @@ div.content {
 .deleteSaved {
   position: absolute;
   top: 10px;
-  left: 0px;
+  left: 10px;
   cursor: pointer;
 }
 

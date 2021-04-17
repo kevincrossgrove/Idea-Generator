@@ -76,9 +76,9 @@ const SavedContent = () => {
                         {content.idea}
                         {content.idea.length > 90 &&
                         <button className="readMore">Read More</button>}
-                        <BsFillXSquareFill className="deleteSaved" onClick={() => unSave(content._id)} size={20} />
+                        <BsFillXSquareFill className="deleteSaved" onClick={() => unSave(content._id)} size={20} color={'#b8d3ff'} />
                     </div>
-                )
+                );
             })}
             </div>
         </div>

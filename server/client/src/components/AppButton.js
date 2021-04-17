@@ -49,7 +49,7 @@ export const ResetButton = ({setReset, listData, setListData}) => {
 }
 
 // Save Button that allows users to save Ideas from the landing page.
-export const SaveButton = ({userId, contentId}) => {
+export const SaveButton = ({userId = null, contentId}) => {
     const [title, setTitle] = useState('Save');
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -62,7 +62,11 @@ export const SaveButton = ({userId, contentId}) => {
         <p>
             <button
             disabled={title === 'Saving' || title === ''}
-            onClick={() => saveContent(setTitle, setErrorMessage, userId, contentId)}
+            onClick={() => {
+                console.log(userId);
+                if (userId !== null) saveContent(setTitle, setErrorMessage, userId, contentId);
+                else setErrorMessage('Login or create an account to save ideas')
+            }}
             id="saveIdeaButton">
             {title}
             {title === '' && (
