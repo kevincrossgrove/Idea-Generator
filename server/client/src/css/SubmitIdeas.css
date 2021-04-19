@@ -21,8 +21,8 @@
     color: rgb(255, 25, 25);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
     #submitTextArea {
-        width: 375px;
+        width: 100%;
     }
 }

@@ -9,7 +9,7 @@ import MainNavbar from '../../components/MainNavbar';
 
 const checkmark = <FcCheckmark size={25} />
 
-const emailRegex = /^[a-zA-Z\d]{3,}@[a-zA-z]{2,}\.[a-zA-Z]{2,}/;
+const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 const Register = () => {
@@ -87,7 +87,7 @@ const Register = () => {
                             onChange={(e) => updateEmail(e.target.value)}
                             value={email} />
                             <i className="check">{emailValid && checkmark}</i>
-                            <Form.Text className="text-muted">{emailError}</Form.Text>
+                            <Form.Text className="errorText">{emailError}</Form.Text>
                         </Form.Group>
                         <Form.Group className="registerFormGroup" autoComplete="new-password">
                             <Form.Label>Password (8+ characters, at least 1 letter, number, special character)</Form.Label>
@@ -95,7 +95,7 @@ const Register = () => {
                             onChange={(e) => updatePassword(e.target.value)}
                             value={password}  />
                             <i className="check">{passwordValid && checkmark}</i>
-                            <Form.Text className="text-muted">{passwordError}</Form.Text>
+                            <Form.Text className="errorText">{passwordError}</Form.Text>
                         </Form.Group>
                         <Form.Group className="registerFormGroup" autoComplete="new-password">
                             <Form.Label>Confirm Password</Form.Label>
@@ -103,7 +103,7 @@ const Register = () => {
                             onChange={(e) => updateVerify(e.target.value)}
                             value={passwordVerify}  />
                             <i className="check">{confirmed && checkmark}</i>
-                            <Form.Text className="text-muted">{confirmError}</Form.Text>
+                            <Form.Text className="errorText">{confirmError}</Form.Text>
                         </Form.Group>
                         <Button variant="success" id="topButton" type="submit">
                             Create Account

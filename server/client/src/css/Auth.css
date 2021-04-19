@@ -72,5 +72,13 @@
 .check {
     position: absolute;
     right: 20px;
-    top: 43px;
+    top: 47px;
+}
+
+.form-label {
+    color: black !important;
+}
+
+.errorText {
+    color: red;
 }

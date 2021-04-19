@@ -191,9 +191,14 @@ div.content {
   width: 150px;
   height: 30px;
   text-align-last: center;
-  background-color: rgb(1, 175, 160);
+  background-color: #0019a7;
   border: 2px solid black;
+  color: white;
   border-radius: 10px;
+}
+
+#categoryDropdown:focus {
+  outline: none;
 }
 
 .savedContentContainer {

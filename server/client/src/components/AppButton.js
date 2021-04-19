@@ -6,13 +6,15 @@ import { saveContent } from '../logic/DbLogic';
 // Button that is currently being used on Landing, and MyButtons page for generation of ideas.
 export const GenerateButton = ({title, onClickFunction, loading=false, listData, setListData, currentVisible}) => {
     return (
-        <button id="generateButton" 
-            disabled={loading}
-            onClick={onClickFunction}>
-            {loading && <span className="buttonTitle">Loading</span>}
-            {!loading && <span className="buttonTitle">{title}</span>}
+        <div id="generateContainer">
+            <button id="generateButton" 
+                disabled={loading}
+                onClick={onClickFunction}>
+                {loading && <span className="buttonTitle">Loading</span>}
+                {!loading && <span className="buttonTitle">{title}</span>}
+            </button>
             {listData.position > 0 && currentVisible && <BackButton listData={listData} setListData={setListData} /> }
-        </button>
+        </div>
     );  
 }
 

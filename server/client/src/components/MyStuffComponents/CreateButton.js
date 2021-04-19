@@ -6,9 +6,9 @@ import { BsFillXSquareFill } from "react-icons/bs";
 import MainNavbar from '../MainNavbar';
 
 const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, setListData, setEditing = null}) => {
-    const [title, setTitle] = useState('New Button');
-    const [ideas, setIdeas] = useState([]);
-    const [buttonId, setButtonId] = useState(null);
+    const [title, setTitle] = useState(buttonData ? buttonData.buttonName : 'New Button');
+    const [ideas, setIdeas] = useState(buttonData ? buttonData.contentArray : []);
+    const [buttonId, setButtonId] = useState(buttonData?._id);
     const [currentIdea, setCurrentIdea] = useState('');
     const [deleteHover, setDeleteHover] = useState(false);
     const [hoverId, setHoverId] = useState('');
@@ -16,17 +16,6 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
     const [displayMessage, setDisplayMessage] = useState('');
     const titleRef = useRef();
     const contentRef = useRef();
-
-    useEffect(() => {
-        const loadButton = () => {
-            setButtonId(buttonData._id);
-            setTitle(buttonData.buttonName);
-            setIdeas(buttonData.contentArray);
-            titleRef.current.value = buttonData.buttonName;
-        }
-
-        if (isEditing) loadButton();
-    }, []);
 
     // If the user deletes their button title, reset the value.
     useEffect(() => {
@@ -107,7 +96,7 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
                     </Col>
                     <Col lg={6}>
                         <Form onSubmit={(e) => e.preventDefault()} >
-                            <Form.Label>Choose your button's name</Form.Label>
+                            <Form.Label className="whiteLabel">Choose your button's name</Form.Label>
                             <Form.Control placeholder="New Button" ref={titleRef} onChange={(e) => {
                                 setTitle(e.currentTarget.value);
                             }}/>
@@ -123,7 +112,7 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
                             onMouseEnter={() => hover(true, idea.id)}
                             onMouseLeave={() => hover(false, '')}>
                                 <h5>{idea.idea}</h5>
-                                {deleteHover && hoverId == idea.id && 
+                                {deleteHover && hoverId === idea.id && 
                                 <BsFillXSquareFill 
                                 className="addedIdeaIcon" 
                                 onClick={() => removeItem(idea.id)}/>}
@@ -132,7 +121,7 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
                     </Col>
                     <Col lg={6}>
                         <Form >
-                            <Form.Label>Add Content</Form.Label>
+                            <Form.Label className="whiteLabel">Add Content</Form.Label>
                             <Form.Control id="contentForm"
                             placeholder="Enter content related to your button" 
                             as="textarea" 

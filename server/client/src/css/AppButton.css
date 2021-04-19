@@ -8,7 +8,6 @@
     font-size: x-large;
     border: 1px solid rgba(0, 0, 0, 0.24);
     text-shadow: 1px 1px 0px #000;
-    position: relative;
     transition: all linear .25s;
     box-shadow: 
         -5px -5px 5px 0 rgba(0, 194, 243, 0.116),
@@ -34,10 +33,16 @@
     opacity: 0.5;
 }
 
+#generateContainer {
+    width: 300px;
+    height: 100px;
+    position: relative;
+}
+
 #backButton {
     position: absolute;
-    left: 300px;
-    bottom: 25px;
+    left: 310px;
+    bottom: 35px;
 }
 
 #resetButton {
@@ -46,9 +51,11 @@
     color: #fff;
     background-color: red;
     border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid black;
-    margin: auto;
+    border: none;
+    margin: 10px auto;
+    box-shadow: 
+        -5px -5px 5px 0 rgba(0, 194, 243, 0.116),
+        7px 7px 7px 0 rgba(0, 0, 0, 0.349)
 }
 
 #saveIdeaButton {
