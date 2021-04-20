@@ -3,7 +3,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { useHistory } from 'react-router';
 
-import MainNavbar from '../components/MainNavbar';
 import '../css/About.css';
 import AuthContext from '../context/AuthContextProvider';
 
@@ -12,8 +11,6 @@ function About() {
     const history = useHistory();
 
     return (
-        <>
-        <MainNavbar />
         <Container>
             <Row align="center">
                 <Col lg={8}>
@@ -46,8 +43,7 @@ function About() {
                 </Col>
             </Row>
         </Container>
-        </>
-    )
+    );
 }
 
 export default About;

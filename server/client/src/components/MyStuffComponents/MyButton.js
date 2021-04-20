@@ -31,15 +31,11 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
     }
 
     useEffect(() => {
-        console.log('Hit');
-    }, [buttonData])
-
-    useEffect(() => {
         const theContent = (listData.position === -1 || listData.position >= listData.length) 
         ? "" : content[listData.position].idea;
         setCurrentContent(theContent);
         setReset(listData.position >= listData.length);
-    }, listData.listPosition);
+    }, [listData, content]);
 
     const setResult = () => {
         if (listData.position < listData.length) 
@@ -58,9 +54,9 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
                     listData={listData}
                     setListData={setListData}
                     setEditing= {setEditing} /> :
-        <div className="content">
         <Container>
-            <button id="returnButton" onClick={() => setButtonSelected(false)}>Back to Buttons</button>
+            <button id="returnButton" className="disable-highlight"
+             onClick={() => setButtonSelected(false)}>Back to Buttons</button>
             <Container align="center">
                 <GenerateButton 
                 title={title} 
@@ -70,23 +66,22 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
                 currentVisible={currentVisible} />
                 <p>
                 <div className="otherButtonsContainer">
-                    <button onClick={() => setEditing(true)} id="editButton">
+                    <button onClick={() => setEditing(true)} id="editButton" className="disable-highlight">
                         Edit
                     </button>
-                    <button onClick={() => setAllContent()} id="viewAllButton">
+                    <button onClick={() => setAllContent()} id="viewAllButton" className="disable-highlight">
                         {viewAll ? "Close": "View"} All Content
                     </button>
                 </div>
                 </p>
                 {listData.position > -1 && listData.position < listData.length && !viewAll && <div className="result">
-                    <h5 id="currentContent">{currentContent}</h5>
+                    <h5 id="currentContent" className="disable-highlight">{currentContent}</h5>
                 </div>}
                 {reset && !viewAll && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/> }
                 {content.length < 1 && <h5>This button has no content added. Press edit to add content.</h5>}
                 {viewAll && <ContentList content={content} />}
             </Container>
-        </Container>
-        </div>}
+        </Container>}
         </>
     );
 }

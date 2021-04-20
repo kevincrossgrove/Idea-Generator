@@ -5,7 +5,6 @@ import axios from 'axios';
 import AuthContext from '../../context/AuthContextProvider';
 import { FcCheckmark } from "react-icons/fc";
 import '../../css/Auth.css';
-import MainNavbar from '../../components/MainNavbar';
 
 const checkmark = <FcCheckmark size={25} />
 
@@ -74,8 +73,6 @@ const Register = () => {
     }
 
     return (
-        <>
-        <MainNavbar />
         <Container>
             <Row className="justify-content-center">
                 <Col md="auto" className="authContainer">
@@ -115,7 +112,6 @@ const Register = () => {
                 </Col>
             </Row>
         </Container>
-        </>
     );
 }
 

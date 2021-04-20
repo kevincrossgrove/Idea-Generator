@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Button, ButtonGroup, Container, Form, Row, Col } from 'react-bootstrap'
 import axios from "axios";
 import '../css/SubmitIdeas.css'
-import MainNavbar from '../components/MainNavbar';
+import { Categories } from '../constants/Categories';
 
 const SubmitIdeas = () => {
     // The current category selected by the user
@@ -36,8 +36,6 @@ const SubmitIdeas = () => {
     }
 
     return (
-        <>
-        <MainNavbar />
         <Container align="center">
             <Row>
                 <h1 id="submitTitle">
@@ -47,10 +45,10 @@ const SubmitIdeas = () => {
             <Row className="justify-content-center">
                 <Col md="auto">
                     <ButtonGroup>
-                        <Button onClick={() => updateCategory('Ideas')} autoFocus={true}>Ideas</Button>
-                        <Button onClick={() => updateCategory('Motivation')}>Motivation</Button>
-                        <Button onClick={() => updateCategory('Pog')}>Pog</Button>
-                        <Button onClick={() => updateCategory('Saved')}>Saved</Button>
+                    {Categories.map((category, index) => 
+                        <Button key={index} autoFocus={index === 0} onClick={() => updateCategory(category)}>
+                            {category}
+                        </Button>)}
                     </ButtonGroup>
                 </Col>
             </Row>
@@ -85,7 +83,6 @@ const SubmitIdeas = () => {
                 <h4 id="errorMessage">{errorMessage}</h4>
             </Row>
         </Container>
-        </>
     )
 }
 

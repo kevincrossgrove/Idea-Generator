@@ -4,7 +4,8 @@ import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
 import '../css/ManageIdeas.css'
 import Ideas from '../components/Ideas';
 import { loadCategoryToManage } from '../logic/DbLogic';
-import MainNavbar from '../components/MainNavbar';
+import axios from 'axios';
+import { Categories } from '../constants/Categories';
 
 function ManageIdeas() {
     const [ideas, setIdeas] = useState([]);
@@ -19,29 +20,37 @@ function ManageIdeas() {
         loadCategory('Ideas');
     }, []);
 
+    const updateDB = () => {
+        axios.post('/ideas/update/all').then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
-        <>
-        <MainNavbar />
         <Container>
             <Row>
                 <h1 id='manageTitle'>Manage Ideas</h1>
+            </Row>
+            <Row>
+                <button id="generateButton" style={{margin: 'auto'}} onClick={() => updateDB()}>Update DB</button>
             </Row>
             <Row>
                 <h5 id='manageCategory'>Selected: {category}</h5>
             </Row>
             <Row>
                 <ButtonGroup aria-label="Basic example">
-                    <Button onClick={() => loadCategory('Ideas')}>Ideas</Button>
-                    <Button onClick={() => loadCategory('Motivation')}>Motivation</Button>
-                    <Button onClick={() => loadCategory('Pog')}>Pog</Button>
-                    <Button onClick={() => loadCategory('Saved')}>Saved</Button>
+                    {Categories.map((category, index) => 
+                            <Button key={index} onClick={() => loadCategory(category)}>
+                                {category}
+                            </Button>)}
                 </ButtonGroup>
             </Row>
             <Row id='ideaListing'>
                 <Ideas ideas={ideas} manage={true} setIdeas={setIdeas} category={category}/>
             </Row>
         </Container>
-        </>
     );
 }
 

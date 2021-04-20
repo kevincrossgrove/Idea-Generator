@@ -3,7 +3,6 @@ import { BsFillXSquareFill } from "react-icons/bs";
 
 import '../../css/MyStuff.css';
 import { LoadUserSavedContent, unsaveIdea } from '../../logic/DbLogic';
-import MainNavbar from '../MainNavbar';
 
 const SavedContent = () => {
     const [savedContent, setSavedContent] = useState([]);
@@ -22,12 +21,7 @@ const SavedContent = () => {
         }
     }, [savedContent]);
 
-    useEffect(() => {
-        filterData(selectedCategory)
-    }, [update]);
-
     const selectUpdate = (e) => {
-        console.log('select update');
         setSelectedCategory(e.target.value);
         filterData(e.target.value);
     }
@@ -48,14 +42,16 @@ const SavedContent = () => {
         setCurrentContent(filteredContent);
     }
 
+    useEffect(() => {
+        filterData(selectedCategory)
+    }, [update]);
+
     const unSave = (ideaId) => {
         unsaveIdea(ideaId, setSavedContent, setUpdate, update);
     }
 
     return (
-        <>
-        <MainNavbar logo={false} />
-        <div className="content scrollable">
+        <div className="scrollable">
             <div id="savedContentTitle">
                 <h5>Saved Content</h5>
             </div>
@@ -82,7 +78,6 @@ const SavedContent = () => {
             })}
             </div>
         </div>
-        </>
     );
 }
 

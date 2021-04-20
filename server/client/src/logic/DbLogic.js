@@ -36,7 +36,7 @@ export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
     if (!userId) return console.log('No one is logged in.');
 
     setTitle('Saving');
-    axios.patch(`/ideas/save/content`, {userId, contentId}).then((response) => {
+    axios.patch(`/savedIdeas/content`, {userId, contentId}).then((response) => {
         setTitle('');
     }).catch(err => {
         if (err.response.data.error === 'User already saved this') {
@@ -51,7 +51,7 @@ export const saveContent = (setTitle, setErrorMessage, userId, contentId ) => {
 
 // Load a user's saved content
 export const LoadUserSavedContent = (setSavedContent, setCurrentContent) => {
-    const url = '/ideas/saved/content';
+    const url = '/savedIdeas/content';
 
     useEffect(() => {
         let source = axios.CancelToken.source();
@@ -73,12 +73,12 @@ export const LoadUserSavedContent = (setSavedContent, setCurrentContent) => {
 
         // Clean up function which cancels the Axios request if necessary. 
         return () => source.cancel();
-    }, []);
+    }, [setSavedContent, setCurrentContent]);
 }
 
 // Unsave a user's content
 export const unsaveIdea = (id, setSavedContent, setUpdate, update) => {
-    axios.delete(`/ideas/saved/content/${id}`).then(response => {
+    axios.delete(`/savedIdeas/content/${id}`).then(response => {
         console.log("Unsaved idea.");
         setSavedContent(response.data);
         setUpdate(!update);

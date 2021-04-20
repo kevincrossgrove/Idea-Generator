@@ -10,8 +10,8 @@ export const GenerateButton = ({title, onClickFunction, loading=false, listData,
             <button id="generateButton" 
                 disabled={loading}
                 onClick={onClickFunction}>
-                {loading && <span className="buttonTitle">Loading</span>}
-                {!loading && <span className="buttonTitle">{title}</span>}
+                {loading && <span className="disable-highlight">Loading</span>}
+                {!loading && <span className="disable-highlight">{title}</span>}
             </button>
             {listData.position > 0 && currentVisible && <BackButton listData={listData} setListData={setListData} /> }
         </div>
@@ -50,10 +50,22 @@ export const ResetButton = ({setReset, listData, setListData}) => {
     );
 }
 
-// Save Button that allows users to save Ideas from the landing page.
-export const SaveButton = ({userId = null, contentId}) => {
+// Copy Button that allows user to copy idea to clipboard.
+export const CopyButton = ({currentContent, setMessage}) => {
+    return (
+        <button id="copyIdeaButton" className="disable-highlight" onClick={() => {
+            navigator.clipboard.writeText(currentContent.idea)
+            setMessage('Successfully copied to clipboard!')
+            setTimeout(() => setMessage(''), 2000);
+            }}>
+            Copy
+        </button>
+    );
+}
+
+// Save Button that allows users to save Ideas.
+export const SaveButton = ({userId = null, contentId, setErrorMessage}) => {
     const [title, setTitle] = useState('Save');
-    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         setTitle('Save');
@@ -61,23 +73,20 @@ export const SaveButton = ({userId = null, contentId}) => {
     }, [contentId]);
     
     return ( <>
-        <p>
-            <button
-            disabled={title === 'Saving' || title === ''}
-            onClick={() => {
-                console.log(userId);
-                if (userId !== null) saveContent(setTitle, setErrorMessage, userId, contentId);
-                else setErrorMessage('Login or create an account to save ideas')
-            }}
-            id="saveIdeaButton">
-            {title}
-            {title === '' && (
-                <VscCheck size='1.5em' />
+        <button
+        disabled={title === 'Saving' || title === ''}
+        onClick={() => {
+            console.log(userId);
+            if (userId !== null) saveContent(setTitle, setErrorMessage, userId, contentId);
+            else setErrorMessage('Login or create an account to save ideas')
+        }}
+        id="saveIdeaButton"
+        className="disable-highlight">
+        {title}
+        {title === '' && (
+            <VscCheck size='1.5em' />
         )}
         </button>
-        </p>
-        <p id="savingError">
-            {errorMessage}
-        </p> </>
+     </>
     );
 }

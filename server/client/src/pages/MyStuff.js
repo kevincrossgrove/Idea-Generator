@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons/lib';
 import SavedContent from '../components/MyStuffComponents/SavedContent';
 import MyButtons from '../components/MyStuffComponents/MyButtons';
 import MobileSidebar from '../components/MyStuffComponents/MobileSidebar';
+import MainNavbar from '../components/MainNavbar';
 
 
 const MyStuff = () => {
@@ -26,7 +27,7 @@ const MyStuff = () => {
         <div id="MyButtonsPage">
             <div className="sidebar">
                 <div className="brand-title for-sidebar">Idea Generator</div>
-                <div className="sidebar-item" onClick={() => {
+                <div className="sidebar-item disable-highlight" onClick={() => {
                     setStartingPage(true);
                     setSavedContent(false);
                     setCreateButton(false); 
@@ -35,7 +36,7 @@ const MyStuff = () => {
                     <AiFillHome />
                     Home
                 </div>
-                <div className="sidebar-item" onClick={() => {
+                <div className="sidebar-item disable-highlight" onClick={() => {
                     setStartingPage(false);
                     setSavedContent(true);
                     setCreateButton(false); 
@@ -44,7 +45,7 @@ const MyStuff = () => {
                     <AiFillSave />
                     Saved Content
                 </div>
-                <div className="sidebar-item" onClick={() => {
+                <div className="sidebar-item disable-highlight" onClick={() => {
                     setStartingPage(false);
                     setSavedContent(false);
                     setCreateButton(true); 
@@ -53,7 +54,7 @@ const MyStuff = () => {
                     <AiFillPlusCircle />
                     Create Button
                 </div>
-                <div className="sidebar-item" onClick={() => {
+                <div className="sidebar-item disable-highlight" onClick={() => {
                     setStartingPage(false);
                     setSavedContent(false);
                     setCreateButton(false); 
@@ -64,11 +65,15 @@ const MyStuff = () => {
                 </div>
             </div>
 
-            {/* The components that will show when sidebar option is selected */}
-            {startingPage && <MyStuffLanding setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
-            {savedContent && <SavedContent /> }
-            {createButton && <CreateButton /> }
-            {myButtons && <MyButtons /> }
+            
+            <div className="content">
+                <MainNavbar logo={false}/>
+                {/* The components that will show when sidebar option is selected */}
+                {startingPage && <MyStuffLanding setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
+                {savedContent && <SavedContent /> }
+                {createButton && <CreateButton /> }
+                {myButtons && <MyButtons /> }
+            </div>
             <MobileSidebar setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons}/>     
         </div>
         </IconContext.Provider>

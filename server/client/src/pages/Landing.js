@@ -2,22 +2,24 @@ import React from 'react'
 import { useEffect, useState, useContext } from 'react';
 import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
 
-import { GenerateButton, ResetButton, SaveButton } from '../components/AppButton';
+import { CopyButton, GenerateButton, ResetButton, SaveButton } from '../components/AppButton';
 import { loadCategory } from '../logic/DbLogic';
 import AuthContext from '../context/AuthContextProvider';
-import MainNavbar from '../components/MainNavbar';
+import { Categories } from '../constants/Categories';
 
 function Landing() {
     const {userData} = useContext(AuthContext);
     const [reset, setReset] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [wordCategory, setCategory] = useState(() => localStorage.getItem('category') ?? 'Ideas');
     const [ideas, setIdeas] = useState([]);
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
         position: -1,
         length: 0
-    }); 
+    });
+    const [copyMessage, setCopyMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Load category, and clear result when the category is switched
     // NOTE: Due to asynchronicity, Idea/Reset are removed before Category is loaded.
@@ -34,7 +36,7 @@ function Landing() {
         ? "" : ideas[listData.position];
         setIdea(currentIdea);
         setReset(listData.position >= listData.length);
-    }, [listData.position]);
+    }, [listData, ideas]);
 
     const generateIdea = () => {
         if (listData.position < listData.length)
@@ -49,15 +51,13 @@ function Landing() {
     }
 
     return (
-        <>
-        <MainNavbar />
         <Container>
             <Row>
                 <ButtonGroup aria-label="Basic example">
-                    <Button onClick = {() => updateCategory('Ideas')}>Ideas</Button>
-                    <Button onClick = {() => updateCategory('Motivation')}>Motivation</Button>
-                    <Button onClick = {() => updateCategory('Pog')}>Pog</Button>
-                    <Button onClick = {() => updateCategory('Saved')}>Saved</Button>
+                    {Categories.map((category, index) => 
+                        <Button key={index} onClick={() => updateCategory(category)}>
+                            {category}
+                        </Button>)}
                 </ButtonGroup>
             </Row>
             <Row>
@@ -74,21 +74,30 @@ function Landing() {
             {idea !== '' && (
                 <>
                 <Row>
-                    <div className='result'>
+                    <div className='result disable-highlight'>
                         <div>{idea.idea}</div>
                     </div>
                 </Row>
                 <Row>
                     <div className='resultOptions'>
-                        <SaveButton userId={userData?._id} contentId={idea._id}/>
+                        <CopyButton currentContent={idea} setMessage={setCopyMessage}/>
+                        <SaveButton userId={userData?._id} contentId={idea._id} setErrorMessage={setErrorMessage} />
                     </div>
+                    <p id="messageContainer">
+                        <span id="savingError">
+                            {errorMessage}
+                        </span>
+                        <span id="copyMessage">
+                            {copyMessage}
+                        </span>
+                    </p>
+
                 </Row>
                 </> )}
             <Row>
                 {reset && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/>}
             </Row>
         </Container>
-        </>
     );
 }
 

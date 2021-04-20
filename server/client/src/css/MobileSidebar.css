@@ -18,7 +18,11 @@
 @media (max-width: 700px) {
     .sidebar-mobile {
         display: flex;
-      }
+    }
+
+    .for-sidebar {
+        display: none;
+    }
   
     .mobile-item {
         display: flex;

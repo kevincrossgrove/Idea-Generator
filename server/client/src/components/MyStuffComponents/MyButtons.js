@@ -25,26 +25,23 @@ const MyButtons = () => {
 
     return (
         <>
-            <MainNavbar logo={false} />
-            <div className="content">
-            {!buttonSelected &&
-            <Container align="center" id="myButtonsContainer">
-                <h1>Select a button</h1>
-                <div className="previewContainer">
-                    {data.map((button, index) => {
-                        return (
-                            <div key={button._id} onClick={() => loadButton(index)}>
-                                <button className="previewButton">{button.buttonName}</button>
-                            </div>
-                        );
-                    })}
-                </div>
-            </Container>
-            }
+        {!buttonSelected &&
+        <Container align="center" id="myButtonsContainer">
+            <h1>Select a button</h1>
+            <div className="previewContainer">
+                {data.map((button, index) => {
+                    return (
+                        <div key={button._id} onClick={() => loadButton(index)}>
+                            <button className="previewButton">{button.buttonName}</button>
+                        </div>
+                    );
+                })}
             </div>
-            {buttonSelected &&
-                <MyButton buttonData={buttonData} setButtonData={setButtonData} setButtonSelected={setButtonSelected} />
-            }
+        </Container>
+        }
+        {buttonSelected &&
+            <MyButton buttonData={buttonData} setButtonData={setButtonData} setButtonSelected={setButtonSelected} />
+        }
         </>
     );
 }

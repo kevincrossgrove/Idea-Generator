@@ -3,9 +3,7 @@ import '../../css/MyStuff.css';
 
 const ContentList = ({content}) => {
     React.useEffect(() => {
-        console.log(typeof(content));
         console.log(content);
-        console.log(Object.keys(content));
     });
 
     const keys = Object.keys(content);
