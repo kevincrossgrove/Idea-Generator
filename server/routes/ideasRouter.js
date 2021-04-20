@@ -3,11 +3,12 @@ const auth = require('../middleware/auth');
 const Idea = require('../models/idea');
 
 // Getting all
-router.get('/', async (req, res) => {
+router.get('/get/all/:visible', async (req, res) => {
     try {
-        const ideas = await Idea.find();
+        const ideas = await Idea.find({'visible' : req.params.visible});
         res.json(ideas);
     } catch (err) {
+        console.log(err.message);
         res.status(500).json({ message: err.message });
     }
 });
@@ -23,10 +24,9 @@ router.get('/get/categories', async (req, res) => {
 });
 
 // Get Category
-router.get('/:category', async (req, res) => {
+router.get('/:category/:visible', async (req, res) => {
     try {
-        console.log(req.params.category)
-        const ideas = await Idea.find({'category': req.params.category})
+        const ideas = await Idea.find({'category': req.params.category, 'visible': req.params.visible});
         res.json(ideas);
     } catch (err) {
         console.log(err.message);
@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
         const newIdea = await idea.save()
         res.status(201).json(newIdea);
     } catch (err) {
+        console.log(err.message);
         res.status(400).json({ message: err.message });
     }
 });
@@ -65,6 +66,7 @@ router.patch('/:id', getIdea, async (req, res) => {
         const updatedIdea = await res.idea.save();
         res.json(updatedIdea);
     } catch (err) {
+        console.log(err.message);
         res.status(400).json({message: err.message});
     }
 });
@@ -75,6 +77,7 @@ router.delete('/:id', auth, adminAuth, getIdea, async (req, res) => {
         await res.idea.remove()
         res.json({ message: `Deleted Idea: ${res.idea.idea}`});
     } catch (err) {
+        console.log(err.message);
         res.status(500).json({ message: err.message });
     }
 });
@@ -82,11 +85,23 @@ router.delete('/:id', auth, adminAuth, getIdea, async (req, res) => {
 // Updated all fields
 router.post('/update/all', auth, adminAuth, async (req, res) => {
     try {
-        const response =  await Idea.updateMany({'category': 'Ideas'}, { $set: {'category': 'Things to do'}});
-        res.json(response);
+        //const response =  await Idea.updateMany({}, { $set: {'visible': false}});
+        res.json({message: 'nothing changed'});
     } catch (err) {
         console.log(err.message);
         res.json(err.message);
+    }
+});
+
+// Accept an idea
+router.patch('/accept/:id', auth, adminAuth, getIdea, async (req, res) => {
+    try {
+        res.idea.visible = true;
+        const updatedIdea = await res.idea.save();
+        res.json(updatedIdea);
+    } catch (err) {
+        console.log(err.message);
+        res.status(400).json({message: err.message}); 
     }
 });
 
@@ -99,6 +114,7 @@ async function getIdea(req, res, next) {
             return res.status(404).json({ message: 'Cannot find Idea' });
         }
     } catch (err) {
+        console.log(err.message);
         return res.status(500).json({ message: err.message });
     }
 
@@ -112,6 +128,7 @@ function adminAuth(req, res, next) {
         if (req.user !== process.env.ADMIN) 
             return res.status(401).json({errorMessage: "Unauthorized"});
     } catch (err) {
+        console.log(err.message);
         return res.status(500).json({ message: err.message });
     }
     next();

@@ -117,3 +117,9 @@
 .whiteLabel {
     color: white !important;
 }
+
+#successfulSave {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

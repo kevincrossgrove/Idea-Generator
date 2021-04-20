@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Container, Row, ButtonGroup, Button } from 'react-bootstrap';
 
 import '../css/ManageIdeas.css'
@@ -9,16 +9,17 @@ import { Categories } from '../constants/Categories';
 
 function ManageIdeas() {
     const [ideas, setIdeas] = useState([]);
-    const [category, setCategory] = useState('Ideas');
+    const [category, setCategory] = useState(Categories[0]);
+    const [visible, setVisible] = useState(false);
 
-    const loadCategory = (newCategory) => {
+    const loadCategory = useCallback((newCategory) => {
         setCategory(newCategory)
-        loadCategoryToManage(newCategory, setIdeas);
-    }
+        loadCategoryToManage(newCategory, setIdeas, visible);
+    }, [setCategory, setIdeas, visible]);
 
     useEffect(() => {
-        loadCategory('Ideas');
-    }, []);
+        loadCategory(category);
+    }, [visible, loadCategory]);
 
     const updateDB = () => {
         axios.post('/ideas/update/all').then(response => {
@@ -31,9 +32,13 @@ function ManageIdeas() {
     return (
         <Container>
             <Row>
-                <h1 id='manageTitle'>Manage Ideas</h1>
+                <h1 id='manageTitle'>Manage {visible ? 'Visible' : 'Invisible'} Ideas</h1>
             </Row>
             <Row>
+                <button id="generateButton" style={{margin: 'auto'}} 
+                onClick={() => { setVisible(!visible); setIdeas([]); } }>
+                    {visible ? 'Visible Ideas' : 'Invisible Ideas'}
+                </button>
                 <button id="generateButton" style={{margin: 'auto'}} onClick={() => updateDB()}>Update DB</button>
             </Row>
             <Row>
@@ -48,7 +53,7 @@ function ManageIdeas() {
                 </ButtonGroup>
             </Row>
             <Row id='ideaListing'>
-                <Ideas ideas={ideas} manage={true} setIdeas={setIdeas} category={category}/>
+                <Ideas ideas={ideas} manage={true} visible={visible} setIdeas={setIdeas} category={category}/>
             </Row>
         </Container>
     );

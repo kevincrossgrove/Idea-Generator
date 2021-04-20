@@ -122,7 +122,7 @@ div.content {
 }
 
 .contentListContainer {
-  margin-top: 25px;
+  margin: 0px 0px 100px 0px;
   background-color: rgb(39, 37, 37);
   color: white;
   min-width: 300px;
@@ -291,4 +291,20 @@ div.content {
   margin: 40px;
   color: black;
   font-size: larger;
+}
+
+#emptyMessage {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#goToIdeasButton {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  background-color: #555;
+  box-shadow: 
+  -5px -5px 5px 0 rgba(0, 194, 243, 0.116),
+  5px 5px 5px 0 rgba(0, 0, 0, 0.349);
+  padding: 10px;
 }

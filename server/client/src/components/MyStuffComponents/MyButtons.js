@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import { Container } from 'react-bootstrap';
 import { loadButtons } from '../../logic/MyStuffLogic';
-import MainNavbar from '../MainNavbar';
 import MyButton from './MyButton';
 
-const MyButtons = () => {
+const MyButtons = ({ setStartingPage, setSavedContent, setCreateButton, setMyButtons}) => {
     // All of this user's buttons
     const [data, setData] = useState([]);
     const [buttonSelected, setButtonSelected] = useState(false);
     const [buttonData, setButtonData] = useState({id: undefined, name: ''});
+    const [empty, setEmpty] = useState(false);
 
     // Load the buttons on first render
     useEffect(() => {
-        loadButtons(setData);
+        loadButtons(setData, setEmpty);
         const timeout = setTimeout(() => console.log('Loading'), 500);
         return () => clearTimeout(timeout);
     }, []);
@@ -37,6 +37,17 @@ const MyButtons = () => {
                     );
                 })}
             </div>
+            {empty &&
+            <div id="emptyMessage">
+                <p>You have not created any Buttons</p>
+                <p>Visit our Create Button page to begin creating Buttons</p>
+                <button id="goToIdeasButton" onClick={() => {
+                    setStartingPage(false);
+                    setSavedContent(false);
+                    setCreateButton(true); 
+                    setMyButtons(false);
+                }}>Go to Create Button</button>
+            </div>}
         </Container>
         }
         {buttonSelected &&

@@ -72,7 +72,7 @@ const MyStuff = () => {
                 {startingPage && <MyStuffLanding setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
                 {savedContent && <SavedContent /> }
                 {createButton && <CreateButton /> }
-                {myButtons && <MyButtons /> }
+                {myButtons && <MyButtons setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
             </div>
             <MobileSidebar setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons}/>     
         </div>

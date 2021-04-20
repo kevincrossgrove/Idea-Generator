@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
 import AuthContext from './context/AuthContextProvider';
 
 // Page imports
@@ -21,7 +21,8 @@ const MainRouter = () => {
         <>
         {location.pathname !== '/mystuff' && <MainNavbar />}
         <Switch>
-            <Route path="/" exact component={Landing}/>
+            <Redirect exact from="/" to="/About" />
+            <Route path="/Ideas" component={Landing}/>
             {loggedIn && <Route path="/MyStuff" component={MyStuff}/>}
             <Route path="/SubmitIdeas" component={SubmitIdeas}/>
             <Route path="/About" component={About}/>

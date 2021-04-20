@@ -48,6 +48,7 @@ router.get('/content', auth, async (req, res) => {
         res.json(content);
     } catch (err) {
         console.log(err.message);
+        res.json([]);
     }
 });
 

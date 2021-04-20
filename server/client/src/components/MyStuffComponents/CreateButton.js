@@ -135,8 +135,8 @@ const CreateButton = ({isEditing = false, buttonData, setButtonData, listData, s
                         disabled={saveButtonText === 'Saving'}
                         onClick={() => save()}>{saveButtonText}</button>
                         <button className="createButton finish" onClick={() => finish()}>Finish</button>
-                        <span>{displayMessage}</span>
                     </div>
+                    <span id="successfulSave">{displayMessage}</span>
                 </Col>
             </Row>
         </Container>

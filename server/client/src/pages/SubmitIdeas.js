@@ -1,12 +1,16 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { Button, ButtonGroup, Container, Form, Row, Col } from 'react-bootstrap'
 import axios from "axios";
+
+import AuthContext from '../context/AuthContextProvider';
 import '../css/SubmitIdeas.css'
 import { Categories } from '../constants/Categories';
 
 const SubmitIdeas = () => {
+    // The data for the current user
+    const {userData} = useContext(AuthContext);
     // The current category selected by the user
-    const [category, setCategory] = useState("Ideas");
+    const [category, setCategory] = useState(Categories[0]);
     // The text inside of the text area
     const [text, setText] = useState('');
     // The errorMessage text
@@ -19,12 +23,15 @@ const SubmitIdeas = () => {
     }
 
     const submitData = async () => {
+        if (userData === null) return setErrorMessage('Please login to submit an idea.');
         if (text === '') return setErrorMessage('Please enter an idea before submitting.');
         else setErrorMessage('');
 
         await axios.post(`/ideas`, {
             category: category,
-            idea: text
+            idea: text,
+            creatorId: userData._id,
+            creationTime: Date.now()
           })
           .then((response) => {
             console.log(response, text);

@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { BsFillXSquareFill } from "react-icons/bs";
+import { useHistory } from 'react-router';
 
 import '../../css/MyStuff.css';
 import { LoadUserSavedContent, unsaveIdea } from '../../logic/DbLogic';
 
 const SavedContent = () => {
+    const history = useHistory();
     const [savedContent, setSavedContent] = useState([]);
     const [currentContent, setCurrentContent] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [update, setUpdate] = useState(false);
+    const [empty, setEmpty] = useState('');
 
-    LoadUserSavedContent(setSavedContent, setCurrentContent);
+    LoadUserSavedContent(setSavedContent, setCurrentContent, setEmpty);
 
     useEffect(() => {
         if (savedContent.length) {
@@ -66,6 +69,12 @@ const SavedContent = () => {
                 </select>
             </div>
             <div className="savedContentContainer">
+            {empty &&
+            <div id="emptyMessage">
+                <p>You do not have any Idea's saved.</p>
+                <p>Visit our Ideas page to begin saving content</p>
+                <button id="goToIdeasButton" onClick={() => history.push('/ideas')}>Go to Ideas page</button>
+            </div>}
             {currentContent.map(content => {
                 return (
                     <div key={content._id} className="savedContent">

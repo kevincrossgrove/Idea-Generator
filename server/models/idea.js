@@ -11,13 +11,21 @@ const ideaSchema = new mongoose.Schema({
     },
     creatorId: {
         type: Number,
-        required: true,
-        default: 0
+        required: false,
     },
     creationTime: {
         type: Date,
         required: false,
     },
+    source: {
+        type: String,
+        required: false
+    },
+    visible: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('Idea', ideaSchema);

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { GenerateButton, ResetButton } from '../../components/AppButton';
 import ContentList from '../MyStuffComponents/ContentList';
 import '../../css/MyButton.css'
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import CreateButton from './CreateButton';
 
 const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
@@ -74,9 +74,11 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
                     </button>
                 </div>
                 </p>
-                {listData.position > -1 && listData.position < listData.length && !viewAll && <div className="result">
-                    <h5 id="currentContent" className="disable-highlight">{currentContent}</h5>
-                </div>}
+                <Row>
+                    {listData.position > -1 && listData.position < listData.length && !viewAll && <div className="result disable-highlight">
+                        {currentContent}
+                    </div>}
+                </Row>
                 {reset && !viewAll && <ResetButton setReset={setReset} listData={listData} setListData={setListData}/> }
                 {content.length < 1 && <h5>This button has no content added. Press edit to add content.</h5>}
                 {viewAll && <ContentList content={content} />}

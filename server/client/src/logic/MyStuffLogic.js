@@ -24,8 +24,9 @@ export const updateButton = (buttonId, buttonName, content) => {
 }
 
 // Load the buttons, but also shuffle the content.
-export const loadButtons = async (setData) => {
+export const loadButtons = async (setData, setEmpty) => {
     await axios.get('/button').then(response => {
+        if (response.data.length === 0) return setEmpty(true);
         response.data.forEach((button) => {
             randomShuffle(button.contentArray);
         })
