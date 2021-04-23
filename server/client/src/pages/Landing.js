@@ -1,17 +1,18 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react';
-import { Container, Row, ButtonGroup, Button, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import { CopyButton, GenerateButton, ResetButton, SaveButton } from '../components/AppButton';
 import { loadCategory } from '../logic/DbLogic';
 import AuthContext from '../context/AuthContextProvider';
 import { Categories } from '../constants/Categories';
+import Dropdown from '../components/Dropdown/Dropdown';
 
 function Landing() {
     const {userData} = useContext(AuthContext);
     const [reset, setReset] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [wordCategory, setCategory] = useState(() => localStorage.getItem('category') ?? 'Ideas');
+    const [wordCategory, setCategory] = useState(Categories[0]);
     const [ideas, setIdeas] = useState([]);
     const [idea, setIdea] = useState('');
     const [listData, setListData] = useState({
@@ -52,14 +53,12 @@ function Landing() {
 
     return (
         <Container>
-            <Row>
-                <ButtonGroup aria-label="Basic example">
-                    {Categories.map((category, index) => 
-                        <Button key={index} onClick={() => updateCategory(category)}>
-                            {category}
-                        </Button>)}
-                </ButtonGroup>
-            </Row>
+            <div>
+                <h2 id="landingTitle" className="neumorph" >Select Category</h2>
+            </div>
+            <div className="dropdownContainer">
+                <Dropdown items={Categories} title="Select a category" value={wordCategory} onChange={val => updateCategory(val)}/>
+            </div>
             <Row>
                 <Col md={12} align="center">
                     <GenerateButton 

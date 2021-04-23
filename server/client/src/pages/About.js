@@ -15,7 +15,7 @@ function About() {
             <Row align="center">
                 <Col lg={8}>
                     <div id="aboutLeftColumn">
-                        <h1><span className="mainWords" onClick={() => history.push('/')}>Discover</span> new Ideas</h1>
+                        <h1><span className="mainWords" onClick={() => history.push('/ideas')}>Discover</span> new Ideas</h1>
                         <div className="description">
                             With Idea Generator, finding new ideas is fast and simple.
                             With various categories to choose from, you can starting finding random ideas now.
@@ -27,7 +27,7 @@ function About() {
                             users to submit their ideas for any category. User's with accepted ideas will
                             be credited, and top contributors will be recognized
                         </div>
-                        <h1><span className="mainWords" onClick={() => history.push('/')}>Save</span> your ideas</h1>
+                        <h1><span className="mainWords" onClick={() => history.push('/ideas')}>Save</span> your ideas</h1>
                         <div className="description">
                             Idea Generator users will be provided far more features. This includes the ability
                             to save ideas you like. Learn more by creating an account, and viewing your dashboard.
@@ -36,7 +36,7 @@ function About() {
                 </Col>
                 <Col lg={4} >
                     <div id="aboutRightColumn">
-                        <Link to='/'><button>Get Started</button></Link>
+                        <Link to='/ideas'><button>Get Started</button></Link>
                         {!loggedIn && <Link to='/register'><button>Sign up for free</button></Link>}
                     </div>
                     

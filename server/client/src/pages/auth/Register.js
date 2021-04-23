@@ -65,7 +65,7 @@ const Register = () => {
 
             await axios.post("http://localhost:5000/auth", registerData );
             await getLoggedIn();
-            history.push('/');
+            history.push('/ideas');
         } catch (err) {
             const response = err.response.data;
             if (response.code === 4) setEmailError(response.errorMessage);

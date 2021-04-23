@@ -20,7 +20,7 @@ const MainNavbar = ({logo = true}) => {
     const navbarActive = { borderBottom: '2px solid rgba(255, 255, 255, 0.507)' }
 
     const account = () => {
-        if (loggedIn) history.push('/manageaccount');
+        if (loggedIn) history.push('/mystuff');
         else history.push('/login');
     }
 
@@ -54,7 +54,7 @@ const MainNavbar = ({logo = true}) => {
                 </ul>
             </div>
             <div className="navbar-button disable-highlight" onClick={() => account()}>
-                {loggedIn ? 'Account' : 'Login'}
+                {loggedIn ? 'My Stuff' : 'Login'}
             </div>
         </nav>
     )

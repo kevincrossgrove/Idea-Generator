@@ -25,7 +25,7 @@ const Login = () => {
         try {
             await axios.post("http://localhost:5000/auth/login", loginData );
             await getLoggedIn();
-            history.push('/');
+            history.push('/ideas');
         } catch (err) {
             console.log(err.response);
             setErrorMessage(err.response.data.errorMessage);

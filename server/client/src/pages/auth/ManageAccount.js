@@ -12,7 +12,7 @@ const ManageAccount = () => {
     const logout = async () => {
         try {
             await axios.get('/auth/logout');
-            history.push('/');
+            history.push('/ideas');
             await getLoggedIn();
         } catch (err)  { console.log(err); }
     }
