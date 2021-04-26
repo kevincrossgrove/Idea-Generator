@@ -25,16 +25,12 @@ export const loadCategoryToManage = (category, setIdeas, visible) => {
     });
 }
 
-export const deleteIdea = (id, setIdeas, category) => {
-    axios.delete(`/ideas/${id}`).then(response => {
-        console.log(response);
-    }).then(() => loadCategoryToManage(category, setIdeas));
+export const deleteIdea = (id, setIdeas, category, visible) => {
+    axios.delete(`/ideas/${id}`).then(() => loadCategoryToManage(category, setIdeas, visible));
 }
 
 export const setVisibleIdea = (id, setIdeas, category) => {
-    axios.patch(`/ideas/accept/${id}`).then(response => {
-        console.log(response);
-    }).then(() => loadCategoryToManage(category, setIdeas, false));
+    axios.patch(`/ideas/accept/${id}`).then(() => loadCategoryToManage(category, setIdeas, false));
 }
 
 // Save content to a user's ID
@@ -99,4 +95,3 @@ export const loadCategoryList = (setCategories) => {
         setCategories(response.data);
     });
 }
-

@@ -1,0 +1,8 @@
+#manageButton {
+    border: 1px solid rgb(29, 68, 29);
+    padding: 10px;
+    background-color: rgb(90, 207, 90);
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+}

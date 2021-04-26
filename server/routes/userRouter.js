@@ -111,7 +111,18 @@ router.get("/user", async (req, res) => {
         const userData = await User.findOne({_id: decoded.user});
         res.send(userData);
     } catch(err) {
-        res.send('No user data');
+        res.send('None');
+    }
+});
+
+// Get another user's DateTimeFormat
+router.get("/user/:id", async (req, res) => {
+    try {
+        console.log(req.params.id);
+        const userData = await User.findOne({_id: req.params.id});
+        res.send(userData);
+    } catch (err) {
+        res.send('No user data for the requested ID');
     }
 });
 

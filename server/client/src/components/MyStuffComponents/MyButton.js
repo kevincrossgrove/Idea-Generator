@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import { GenerateButton, ResetButton } from '../../components/AppButton';
+import { ArrowBackButton, BackButton, GenerateButton, ResetButton } from '../../components/AppButton';
 import ContentList from '../MyStuffComponents/ContentList';
 import '../../css/MyButton.css'
 import { Container, Row } from 'react-bootstrap';
@@ -55,8 +55,7 @@ const MyButton = ({buttonData, setButtonData, setButtonSelected}) => {
                     setListData={setListData}
                     setEditing= {setEditing} /> :
         <Container>
-            <button id="returnButton" className="disable-highlight"
-             onClick={() => setButtonSelected(false)}>Back to Buttons</button>
+            <ArrowBackButton title="Back to Buttons" onClick={() => setButtonSelected(false)} />
             <Container align="center">
                 <GenerateButton 
                 title={title} 

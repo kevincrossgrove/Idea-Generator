@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/AppButton.css';
 import { VscArrowLeft, VscCheck } from "react-icons/vsc";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 import { saveContent } from '../logic/DbLogic';
 
 // Button that is currently being used on Landing, and MyButtons page for generation of ideas.
@@ -90,3 +91,10 @@ export const SaveButton = ({userId = null, contentId, setErrorMessage}) => {
      </>
     );
 }
+
+// Back button that has arrow and text
+export const ArrowBackButton = ({ title, onClick }) =>
+    <button className="arrowBackButton disable-highlight" onClick={() => onClick()}>
+        <HiOutlineArrowLeft className="arrow" />
+        {title}
+    </button>

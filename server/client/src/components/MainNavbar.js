@@ -48,7 +48,7 @@ const MainNavbar = ({logo = true}) => {
                 <ul>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/ideas'>Ideas</Link></li>
-                    {loggedIn && <li><Link to='/mystuff'>My Stuff</Link></li>}
+                    <li><Link to='/leaderboard'>Leaderboard</Link></li>
                     <li><Link to='/submitideas'>Submit Ideas</Link></li>
                     {loggedIn && userData?.admin === true && <li><Link to='/manageideas'>Manage</Link></li>}
                 </ul>

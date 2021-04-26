@@ -10,7 +10,7 @@ const ideaSchema = new mongoose.Schema({
         required: true
     },
     creatorId: {
-        type: Number,
+        type: mongoose.Types.ObjectId,
         required: false,
     },
     creationTime: {

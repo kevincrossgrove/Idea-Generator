@@ -3,8 +3,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import axios from 'axios';
 import AuthContext from '../../context/AuthContextProvider';
 import { useHistory } from 'react-router';
+import { ArrowBackButton } from '../../components/AppButton';
 
-const ManageAccount = () => {
+const ManageAccount = ({ setManageAccount, setProfile }) => {
     const {getLoggedIn} = useContext(AuthContext);
     const {userData} = useContext(AuthContext);
     const history = useHistory();
@@ -25,8 +26,14 @@ const ManageAccount = () => {
         return `${month} ${year}`;
     }
 
+    const goBack = () => {
+        setManageAccount(false);
+        setProfile(true);
+    }
+
     return (
         <Container>
+            <ArrowBackButton title="Return to profile" onClick={() => goBack()}/>
             <Row>
                 <Col align="center">
                     <p>Welcome {userData.email}!</p>

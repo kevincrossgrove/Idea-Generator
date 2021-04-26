@@ -39,7 +39,8 @@ router.post('/', async (req, res) => {
     const idea = new Idea({
         category: req.body.category,
         idea: req.body.idea,
-        creationTime: new Date()
+        creationTime: new Date(),
+        creatorId: req.body.creatorId
     });
 
     // Status 201 means successfully created an object
@@ -85,7 +86,7 @@ router.delete('/:id', auth, adminAuth, getIdea, async (req, res) => {
 // Updated all fields
 router.post('/update/all', auth, adminAuth, async (req, res) => {
     try {
-        //const response =  await Idea.updateMany({}, { $set: {'visible': false}});
+        // const response =  await Idea.updateMany({}, { $set: {'visible': false}});
         res.json({message: 'nothing changed'});
     } catch (err) {
         console.log(err.message);

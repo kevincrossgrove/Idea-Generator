@@ -11,6 +11,7 @@ import MobileSidebar from '../components/MyStuffComponents/MobileSidebar';
 import MainNavbar from '../components/MainNavbar';
 import { BsPersonFill } from 'react-icons/bs';
 import ManageAccount from './auth/ManageAccount';
+import Profile from './Profile';
 
 
 const MyStuff = () => {
@@ -91,7 +92,7 @@ const MyStuff = () => {
                 {savedContent && <SavedContent /> }
                 {createButton && <CreateButton /> }
                 {myButtons && <MyButtons setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons} />}
-                {myProfile && <ManageAccount />}
+                {myProfile && <Profile /> } 
             </div>
             <MobileSidebar setStartingPage={setStartingPage} setSavedContent={setSavedContent} setCreateButton={setCreateButton} setMyButtons={setMyButtons}/>     
         </div>

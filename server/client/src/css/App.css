@@ -70,3 +70,18 @@ body {
   -5px -5px 5px 0 rgba(255, 255, 255, 0.15),
   5px 5px 5px 0 rgba(27, 27, 27, 0.349);
 }
+
+.arrowBackButton {
+  position: relative;
+  border: none;
+  padding: 10px 10px 10px 40px;
+  background-color: rgb(10, 131, 70);
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.arrow {
+  position: absolute;
+  left: 10px;
+}
