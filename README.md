@@ -4,4 +4,4 @@
 ## Current Heroku Hosting Location
 https://generator-v2.herokuapp.com/
 
-The heroku hosted version of **IdeaGenerator** is not up to do with this repository.
+The heroku hosted version of **IdeaGenerator** is not up to date with this repository.
